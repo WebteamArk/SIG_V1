@@ -1,0 +1,76 @@
+#footer
+  padding: 95px 0 100px
+  background: #ebedee
+  color: #b2b2b2
+  @include breakpoint($t)
+    padding: 85px 0 90px
+  @include breakpoint($m)
+    padding: 45px 0 50px
+  a
+    color: #b2b2b2
+    text-decoration: none
+  #block-menu-menu-footer-menu
+    max-width: 1280px
+    margin: 0 auto
+    ul
+      padding: 0
+      margin: 0
+      list-style-type: none
+      list-style-image: none
+      visibility: visible
+      text-transform: uppercase
+      text-align: center
+      &::after
+        @include clearfix
+      li
+        padding: 0
+        margin: 0 0 0 0
+        list-style-type: none
+        list-style-image: none
+        display: block
+        ul
+          text-align: left
+          li
+            line-height: 17px
+            margin-bottom: 5px
+      li.column
+        display: inline-block
+        vertical-align: top
+        text-align: left
+        margin: 0 45px
+        > a, > span
+          font-weight: 700
+          border-bottom: 1px solid #b2b2b2
+          display: inline-block
+          padding-bottom: 6px
+          margin-bottom: 12px
+        @include breakpoint($m)
+          display: block
+          text-align: center
+          ul
+            display: none
+      li.column.social
+        ul
+          display: block
+          @include breakpoint($m)
+            text-align: center
+          li
+            display: inline-block
+            text-indent: -9990px
+            width: 25px
+            height: 25px
+            margin-right: 5px
+            a
+              display: block
+              text-indent: -9990px
+              width: 25px
+              height: 25px
+          li.instagram
+            a
+              background: transparent url('i/social-icons.png') no-repeat 0 0
+          li.linkedin
+            a
+              background: transparent url('i/social-icons.png') no-repeat -25px 0
+          li.twitter
+            a
+              background: transparent url('i/social-icons.png') no-repeat -50px 0
