@@ -1,0 +1,170 @@
+#header
+  background: #000
+  background: rgba(0,0,0,0.5)
+  position: absolute
+  top: 10px
+  left: 0px
+  width: 100%
+  height: auto
+  z-index: 2
+  min-height: 54px
+  @include breakpoint($m)
+    min-height: 50px
+  .front &
+    background-color: #294754
+    background-color: rgba(41,71,84,0.75)
+  &::after
+    @include clearfix
+  @include breakpoint($d)
+    background-image: url('i/logo-left-54.png')
+    background-repeat: no-repeat
+    background-position: center top
+  .header-inner
+    max-width: 1200px
+    margin: 0 auto
+    position: relative
+  // logo
+  #logo-outer
+    background: transparent url('i/logo-bg.png') no-repeat right top
+    min-width: 318px
+    min-height: 54px
+    float: left
+    text-align: center
+    position: absolute
+    left: 0
+    top: 0
+    @include breakpoint($m)
+      min-height: 50px
+    a#logo
+      display: inline-block
+      float: none
+      img
+        display: inline-block
+  // menu
+  .region-header
+    clear: none
+    // float: right
+    @include breakpoint($m)
+      float: none
+      clear: both
+    @include breakpoint($t)
+      float: none
+      clear: both
+  #block-system-main-menu
+    margin: 0
+    .responsive-menus
+      > ul#rm-no-id
+        margin: 16px 30px 10px 0
+        padding: 0
+        span
+          line-height: 20px
+          padding: 0 0 0 11px
+          margin: 0 0 8px
+      &.npx-expanded
+        .responsive-menus
+          > ul#rm-no-id
+            margin: 16px 30px 19px 0
+    @include breakpoint($m)
+      .responsive-menus
+        > ul#rm-no-id
+          margin: 16px 30px 10px 0
+          padding: 0
+          span
+            line-height: 20px
+            padding: 0 0 0 0
+            margin: 0 0 8px
+        &.npx-expanded
+          .responsive-menus
+            > ul#rm-no-id
+              margin: 16px 30px 19px 0
+              span
+                padding: 0 0 0 11px
+  .responsive-menus
+    float: right
+    > ul#rm-no-id
+      padding: 0
+      margin: 16px 30px 19px 0px
+      list-style-type: none
+      list-style-image: none
+      visibility: visible
+      text-transform: uppercase
+      &::after
+        @include clearfix
+      li
+        padding: 0
+        margin: 0 0 0 0
+        list-style-type: none
+        list-style-image: none
+        display: block
+      > li
+        display: block
+        float: left
+        margin-right: 10px
+        span
+          font-family: 'Open Sans'
+          font-weight: 700
+          display: block
+          color: #fff
+          padding: 0 0 0 11px
+          line-height: 20px
+          margin: 0 0 8px
+          cursor: pointer
+      ul
+        padding: 0
+        margin: 0
+        list-style-type: none
+        list-style-image: none
+        height: 0px
+        overflow: hidden
+        &.npx-expanded
+          height: auto
+          overflow: visible
+    a
+      color: #fff
+      text-decoration: none
+      display: inline-block
+      padding: 0 0 0 11px
+      line-height: 20px
+    a.is-active-trail
+      font-family: 'Open Sans'
+      font-weight: 700
+      background: transparent url('i/menu-pointer.png') no-repeat left center
+    &.responsified
+      span.toggler
+        background: transparent url('i/menu-toggle.png') no-repeat 0 0
+        border-radius: 0
+        box-shadow: none
+        cursor: pointer
+        display: block
+        outline: medium none
+        padding: 0
+        text-align: center
+        width: 59px
+        height: 50px
+        margin: 4px 0 0 0
+        position: relative
+        text-indent: -9990px
+        overflow: hidden
+        border: none
+        float: right
+        @include breakpoint($m)
+          margin: 0 0 0 0
+      .responsive-menus-simple
+        border-bottom-left-radius: 0px
+        border-bottom-right-radius: 0px
+        box-shadow: none
+        background: #000
+        background: rgba(0,0,0,0.5)
+        clear: both
+        span.nolink
+          display: none
+        a
+          display: block
+          text-decoration: none
+          border-bottom: rgba(255,255,255,0.1) 1px solid
+          line-height: 200%
+          padding: 5px 5px 5px 20px
+          background-position: 5px center
+.front #header .responsive-menus.responsified .responsive-menus-simple
+  background-color: #294754
+  background-color: rgba(41,71,84,0.75)

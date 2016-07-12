@@ -1,0 +1,16 @@
+#admin-menu
+  #admin-menu-account::before
+    color: yellow
+    font-weight: bold
+    @include breakpoint($d)
+      content: ' desktop '
+    @include breakpoint($t)
+      content: ' tablet '
+    @include breakpoint($m)
+      content: ' mobile '
+  .tabs-primary__tab,
+  .tabs-primary__tab.is-active
+    text-shadow: none
+    padding: 0 5px
+    margin: 0
+    border: none
