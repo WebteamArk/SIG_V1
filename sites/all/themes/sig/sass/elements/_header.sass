@@ -2,9 +2,10 @@
   background: #000
   background: rgba(0,0,0,0.5)
   position: absolute
-  top: 10px
+  top: 0px
   left: 0px
   width: 100%
+  border-top: 10px solid #fff
   height: auto
   z-index: 2
   min-height: 54px
@@ -33,8 +34,10 @@
     position: absolute
     left: 0
     top: 0
+    z-index: 2
     @include breakpoint($m)
       min-height: 50px
+      min-width: 208px
     a#logo
       display: inline-block
       float: none
@@ -64,6 +67,10 @@
         .responsive-menus
           > ul#rm-no-id
             margin: 16px 30px 19px 0
+    &.npx-expanded
+      .responsive-menus
+        > ul#rm-no-id
+          margin: 23px 30px 23px 0
     @include breakpoint($m)
       .responsive-menus
         > ul#rm-no-id
