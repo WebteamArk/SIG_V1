@@ -130,3 +130,10 @@ function sig_preprocess_block(&$variables, $hook) {
   //}
 }
 // */
+
+/**
+ * Implements HOOK_block_view_MODULE_DELTA_alter()
+ */
+function sig_block_view_block_1_alter(&$data, $block) {
+  drupal_add_js(drupal_get_path('theme', 'sig') . '/js/block1.js');
+}
