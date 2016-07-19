@@ -1,4 +1,8 @@
-#block-ds-extras-top-image-with-title
+#block-ds-extras-top-image-with-title,
+#block-ds-extras-top-image-with-title-2,
+#block-ds-extras-top-image-with-title-3,
+#block-ds-extras-top-image-with-title-4,
+#block-ds-extras-top-image-with-title-5
   position: relative
   margin: 0 0 0 0
   img
@@ -7,11 +11,14 @@
     .field-name-field-intro-image
       height: 100vh
       overflow: hidden
-      img
-        height: 100vh !important
-        width: auto !important
-        display: block
-        max-width: none
+      background-position: center top
+      background-repeat: no-repeat
+      background-size: cover
+      // img
+      //   height: 100vh !important
+      //   width: auto !important
+      //   display: block
+      //   max-width: none
     .field-name-field-title-on-image
       position: absolute
       width: 100%
@@ -54,15 +61,18 @@
     .field-name-field-intro-image
       overflow: hidden
       height: 375px
-      img
-        height: 100%
-        width: 1280px
-        max-width: 1280px !important
-        margin-left: 0
+      background-position: right top
+      background-repeat: no-repeat
+      background-size: cover
       @include breakpoint($t)
         height: 310px
       @include breakpoint($m)
         height: 175px
+      // img
+      //   height: 100%
+      //   width: 1280px
+      //   max-width: 1280px !important
+      //   margin-left: 0
     .field-name-field-title-on-image
       position: absolute
       width: 100%

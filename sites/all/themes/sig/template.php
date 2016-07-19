@@ -137,3 +137,14 @@ function sig_preprocess_block(&$variables, $hook) {
 function sig_block_view_block_1_alter(&$data, $block) {
   drupal_add_js(drupal_get_path('theme', 'sig') . '/js/block1.js');
 }
+
+/**
+ * Implements HOOK_form_alter()
+ */
+function sig_form_alter(&$form, &$form_state, $form_id) {
+  if(preg_match("/webform_client_form_/i", $form_id)) {
+    $form_structure = &$form['submitted'];
+    $form['actions']['submit']['#prefix'] = '<div class="extra_div">';
+    $form['actions']['submit']['#suffix'] = '</div>';
+  }
+}

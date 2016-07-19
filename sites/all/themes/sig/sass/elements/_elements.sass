@@ -1,5 +1,9 @@
 p
   margin-top: 0
+a:link, a:visited
+  color: $KolorMain
+a:hover, a:active
+  color: $KolorMain
 .h1-outer
   text-align: center
 h1
@@ -9,7 +13,7 @@ h1
   display: inline-block
   text-transform: uppercase
   padding: 0 60px 20px
-  margin: 70px 0 0px
+  margin: 0px 0 0px
   color: $Kolor1
   border-bottom: 2px solid $Kolor3
   +box-sizing(border-box)
@@ -17,12 +21,12 @@ h1
     font-size: 30px
     line-height: 40px
     padding: 0 20px 20px
-    margin: 60px 0 0px
+    margin: 0px 0 0px
   @include breakpoint($m)
     font-size: 15px
     line-height: 18px
     padding: 0 30px 10px
-    margin: 40px 0 0px
+    margin: 0px 0 0px
 h2
   font-weight: 300
   font-size: 20px
@@ -36,3 +40,86 @@ h2
   @include breakpoint($m)
     font-size: 15px
     line-height: 32px
+.position-center
+  @include paragraph-center
+.styles-align-center
+  text-align: center
+.styles-mobile-display-none
+  @include breakpoint($m)
+    display: none
+.styles-tablet-display-none
+  @include breakpoint($t)
+    display: none
+.field-name-ds-share-this
+  @include paragraph-center
+  margin-top: 70px
+  text-align: center
+  h2
+    font-weight: 300
+    margin: 0 0 35px
+  .a2a_kit
+    a
+      display: inline-block
+      margin: 0 12px 0
+      width: 47px
+      height: 47px
+      text-indent: -9990px
+      float: none
+      background-image: url('i/social.png')
+      background-position: 0 0
+      background-repeat: no-repeat
+      span
+        display: none
+    a.a2a_button_twitter
+      background-position: -0px -47px
+      &:hover
+        background-position: -0px 0
+    a.a2a_button_facebook
+      background-position: -47px -47px
+      &:hover
+        background-position: -47px 0
+    a.a2a_button_linkedin
+      background-position: -94px -47px
+      &:hover
+        background-position: -94px 0
+    a.a2a_button_link
+      background-position: -141px -47px
+      &:hover
+        background-position: -141px 0
+    a.a2a_button_email
+      background-position: -188px -47px
+      &:hover
+        background-position: -188px 0
+  @include breakpoint($t)
+    margin-top: 60px
+  @include breakpoint($m)
+    margin-top: 40px
+    h2
+      font-weight: 300
+      margin: 0 0 15px
+    .a2a_kit
+      a
+        margin: 0 6px 0
+        width: 26px
+        height: 26px
+        background-image: url('i/social.png')
+      a.a2a_button_twitter
+        background-position: -0px -120px
+        &:hover
+          background-position: -0px -94px
+      a.a2a_button_facebook
+        background-position: -26px -120px
+        &:hover
+          background-position: -26px -94px
+      a.a2a_button_linkedin
+        background-position: -52px -120px
+        &:hover
+          background-position: -52px -94px
+      a.a2a_button_link
+        background-position: -78px -120px
+        &:hover
+          background-position: -78px -94px
+      a.a2a_button_email
+        background-position: -104px -120px
+        &:hover
+          background-position: -104px -94px

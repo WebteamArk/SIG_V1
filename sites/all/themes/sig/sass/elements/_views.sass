@@ -1,0 +1,98 @@
+.view
+  img
+    display: block
+  .pager
+    margin: 70px 0 0 0
+    @include breakpoint($t)
+      margin: 70px 0 0 0
+    @include breakpoint($m)
+      margin: 70px 0 0 0
+  .pager-load-more
+    @include link-style
+  .view-filters::after,
+  .view-content::after
+    @include clearfix
+  .node-teaser
+    h2
+      margin: 0 0 0 0
+.view-3-cols
+  @include views-3-cols
+
+
+.view-id-products
+  .views-row
+    float: left
+    width: 25%
+    margin-top: 25px
+    +box-sizing(border-box)
+    padding: 0 2%
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4)
+      margin-top: 0
+    @include breakpoint($t)
+      width: 50%
+      margin-top: 20px
+      &:nth-child(1),
+      &:nth-child(2)
+        margin-top: 20
+      &:nth-child(3),
+      &:nth-child(4)
+        margin-top: 0
+    @include breakpoint($m)
+      width: 100%
+      float: none
+      margin-top: 10px
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4)
+        margin-top: 10px
+
+.view-id-cases
+  .view-filters
+    width: 30%
+    overflow: hidden
+    height: 30px
+    @include breakpoint($t)
+      width: 50%
+    @include breakpoint($m)
+      width: 100%
+    .views-exposed-form
+      .views-exposed-widgets
+        margin: 0
+        padding: 0
+    #edit-field-case-category-tid-wrapper
+      width: 100%
+      background: #f2f2f2
+      overflow: hidden
+      height: 30px
+      line-height: 30px
+      font-size: 18px
+      +box-sizing(border-box)
+      padding: 0
+      margin: 0
+      position: relative
+      z-index: 1
+      &:after
+        position: absolute
+        top: 0
+        right: 0
+        width: 30px
+        height: 30px
+        background: transparent url('i/select30.png') no-repeat 0 0
+        content: " "
+        z-index: 2
+        pointer-events: none
+      select
+        border: none
+        background: transparent
+        +border-radius(0)
+        width: 130%
+        display: block
+        +box-sizing(border-box)
+        +appearance(none)
+        padding-left: 5px
+        line-height: 30px
+        height: 30px

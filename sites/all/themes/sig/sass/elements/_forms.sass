@@ -1,0 +1,82 @@
+.form-item
+  margin: 0 0 15px
+  @include breakpoint($m)
+    margin: 0 0 10px
+input.form-text,
+input.form-email,
+textarea
+  background: #f2f2f2
+  border: none
+  width: 100%
+  +box-sizing(border-box)
+  color: #000
+  padding-left: 5px
+input.form-text,
+input.form-email
+  line-height: 30px
+  height: 30px
+textarea
+  height: 200px
+.form-actions
+  text-align: center
+  @include link-style
+  clear: both
+  padding-top: 70px
+  @include wrapper-submit-button
+  .extra_div
+    display: inline-block
+  input.form-submit
+    color: #fff
+    display: inline-block
+    line-height: 30px
+    padding: 0 47px
+    background: $KolorMain
+    display: inlineblock
+    border: none
+    position: relative
+    z-index: 1
+.select-wrapper
+  width: 100%
+  background: #f2f2f2
+  overflow: hidden
+  height: 30px
+  line-height: 30px
+  +box-sizing(border-box)
+  padding: 0
+  position: relative
+  z-index: 1
+  &:after
+    position: absolute
+    top: 0
+    right: 0
+    width: 30px
+    height: 30px
+    background: transparent url('i/select30.png') no-repeat 0 0
+    content: " "
+    z-index: 2
+    pointer-events: none
+  select
+    border: none
+    background: transparent
+    +border-radius(0)
+    width: 130%
+    display: block
+    +box-sizing(border-box)
+    +appearance(none)
+    padding-left: 5px
+    line-height: 30px
+    height: 30px
+    color: #000
+
+
+.webform-client-form
+  padding: 0 20% 0 20%
+  @include breakpoint($t)
+    padding: 0 0 0 0
+  @include breakpoint($m)
+    padding: 0 0 0 0
+.captcha.form-wrapper
+  float: right
+  .fieldset-legend,
+  .fieldset-description
+    display: none
