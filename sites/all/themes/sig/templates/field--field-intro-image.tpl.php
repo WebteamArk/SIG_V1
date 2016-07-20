@@ -1,0 +1,1 @@
+<div class="field field-name-field-intro-image field-type-image field-label-hidden" style="background-image: url(<?php foreach ($items as $delta => $item): ?><?php print render($item); ?><?php endforeach; ?>)"></div>
