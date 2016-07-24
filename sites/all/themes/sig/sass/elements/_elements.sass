@@ -4,28 +4,38 @@ a:link, a:visited
   color: $KolorMain
 a:hover, a:active
   color: $KolorMain
-.h1-outer
+.h1-outer, .h1-outer.entity-paragraphs-item
+  text-align: center
+  h1
+    margin: 0 20%
+  // padding: 0 20% 0 20%
+  // @include breakpoint($t)
+  //   padding: 0 0 0 0
+  // @include breakpoint($m)
+  //   padding: 0 0 0 0
+
+.text-center
   text-align: center
 h1
   font-weight: 300
   font-size: 30px
-  line-height: 40px
+  line-height: 30px
   display: inline-block
   text-transform: uppercase
-  padding: 0 60px 20px
+  padding: 0 0px 20px
   margin: 0px 0 0px
   color: $Kolor1
-  border-bottom: 2px solid $Kolor3
+  border-bottom: 2px solid $Kolor1
   +box-sizing(border-box)
   @include breakpoint($t)
     font-size: 30px
     line-height: 40px
-    padding: 0 20px 20px
+    padding: 0 0px 20px
     margin: 0px 0 0px
   @include breakpoint($m)
     font-size: 15px
     line-height: 18px
-    padding: 0 30px 10px
+    padding: 0 0px 10px
     margin: 0px 0 0px
 h2
   font-weight: 300
@@ -50,6 +60,9 @@ h2
 .styles-tablet-display-none
   @include breakpoint($t)
     display: none
+// .styles-tablet-display-none
+//
+
 .field-name-ds-share-this
   @include paragraph-center
   margin-top: 70px
@@ -57,17 +70,28 @@ h2
   h2
     font-weight: 300
     margin: 0 0 35px
-  .a2a_kit
-    a
+  .all_links
+    position: relative
+    text-align: center
+    .all_links_inner
+      position: relative
+      width: 307px
       display: inline-block
-      margin: 0 12px 0
+      padding: 0 0 0 12px
+      @include breakpoint($m)
+        width: 160px
+        padding: 0 0 0 6px
+    a
+      display: block
+      float: left
+      margin: 0 12px 0 0
       width: 47px
       height: 47px
       text-indent: -9990px
-      float: none
       background-image: url('i/social.png')
       background-position: 0 0
       background-repeat: no-repeat
+      padding: 0
       span
         display: none
     a.a2a_button_twitter
@@ -82,11 +106,16 @@ h2
       background-position: -94px -47px
       &:hover
         background-position: -94px 0
-    a.a2a_button_link
+    a.sig_link
       background-position: -141px -47px
+      position: absolute
+      left: 189px
+      top: 0
+      display: block
       &:hover
         background-position: -141px 0
     a.a2a_button_email
+      margin: 0 12px 0 59px
       background-position: -188px -47px
       &:hover
         background-position: -188px 0
@@ -97,9 +126,9 @@ h2
     h2
       font-weight: 300
       margin: 0 0 15px
-    .a2a_kit
+    .all_links
       a
-        margin: 0 6px 0
+        margin: 0 6px 0 0
         width: 26px
         height: 26px
         background-image: url('i/social.png')
@@ -115,11 +144,62 @@ h2
         background-position: -52px -120px
         &:hover
           background-position: -52px -94px
-      a.a2a_button_link
+      a.sig_link
+        left: 102px
         background-position: -78px -120px
         &:hover
           background-position: -78px -94px
       a.a2a_button_email
+        margin: 0 6px 0 32px
         background-position: -104px -120px
         &:hover
           background-position: -104px -94px
+.image-overlay-outer
+  position: relative
+  overflow: hidden
+  .image-overlay
+    position: absolute
+    z-index: 2
+    top: 0
+    height: 100%
+    right: -30%
+    width: 31%
+    background: transparent url('i/image-overlay.png') no-repeat right center / cover
+body
+  .ui-widget-overlay
+    background-color: #fff !important
+    background-image: none !important
+    opacity: 0.8
+.node-type-case-page
+  .ui-dialog
+    background-color: #f2f2f2
+    .ui-dialog-titlebar
+      padding: 0.4em 1em
+      position: relative
+      border: none
+      background-color: transparent !important
+      background-image: none !important
+    #sig-dialog
+      background-color: transparent !important
+      background-image: none !important
+      input
+        width: 100%
+        border: none
+        padding: 0 5px
+        line-height: 30px
+        +box-sizing(border-box)
+      input:active, input:focus
+        +box-shadow(0 0 5px inset $KolorMain)
+    #sig-dialog,
+    .ui-widget-content,
+    .ui-dialog-content
+      background-color: transparent !important
+      background-image: none !important
+      background: transparent !important
+      background: transparent url('i/nothing.gif') repeat-x scroll 50% 50%
+.ui-dialog .ui-dialog-content,
+.ui-widget-content
+  background-color: #f2f2f2 !important
+  background-image: none !important
+  background: #f2f2f2 !important
+  background: #f2f2f2 url('i/nothing.gif') repeat-x scroll 50% 50%
