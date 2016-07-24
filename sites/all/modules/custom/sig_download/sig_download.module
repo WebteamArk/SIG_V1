@@ -1,0 +1,175 @@
+<?php
+
+/**
+ * @file sig_download.module
+ * @author Jacek Szmit
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function sig_download_block_info() {
+  $blocks = array();
+
+  $blocks['sid_downloadcenter'] = array(
+      'info' => t('SIG downloadcenter'),
+      'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function sig_download_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'sid_downloadcenter':
+      $block['subject'] = t('Sig downloadcenter');
+      if (!isset($_COOKIE[SIG_EMAIL_COOKIE])) {
+        $block['content'] = drupal_get_form('sig_downloadcenter_email_form');
+      }
+      else {
+        $block['content'] = drupal_get_form('sig_downloadcenter_list_form');
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * sig_downloadcenter_email_form CALLBACK
+ */
+function sig_downloadcenter_email_form($form, &$form_state) {
+  $form['sig'] = array(
+    '#type' => 'container',
+  );
+  $form['sig']['info'] = array(
+    '#markup' => t('Enter Your email address to download files.'),
+    '#prefix' => '<div class="sig-form-info">',
+    '#suffix' => '</div>',
+  );
+  $form['sig']['email'] = array(
+    '#type' => 'textfield',
+    //'#title' => t('Email'),
+    '#required' => true,
+    '#element_validate' => array('_sig_download_email_validate'),
+    '#attributes' =>array('placeholder' => t('Email*'))
+  );
+  $form['sig']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    '#prefix' => '<div class="form-actions"><div class="extra_div">',
+    '#suffix' => '</div></div>',
+  );
+
+  return $form;
+}
+
+/**
+ * email element_validate CALLBACK
+ */
+function _sig_download_email_validate($element, &$form_state, $form) {
+  $value = $element['#value'];
+  if (!valid_email_address($value)) {
+    form_error($element, t('Please enter a valid email address.'));
+  }
+}
+
+/**
+ * sig_downloadcenter_email_form submit CALLBACK
+ */
+function sig_downloadcenter_email_form_submit($form, &$form_state) {
+  global $cookie_domain;
+  
+  if (!isset($_COOKIE[SIG_EMAIL_COOKIE])) {
+    setcookie(SIG_EMAIL_COOKIE,1,time() + (86400 * 365), '/', $cookie_domain);
+  }
+  
+  $email = $form_state['values']['email'];
+  if(_sig_case_save_email_entity($email)) {
+    _sig_messages_mail_send($email);
+  }
+}
+
+/**
+ * sig_downloadcenter_list_form CALLBACK
+ */
+function sig_downloadcenter_list_form($form, &$form_state) {
+  $node = menu_get_object();
+  
+  $files_info = array();
+  
+  foreach ($node->field_paragraph_files[LANGUAGE_NONE] as $elem) {
+    $entity = entity_load_single('paragraphs_item', $elem['value']);
+    $files_info[] = array(
+      'title' => $entity->field_downloadcenter_title[LANGUAGE_NONE][0]['value'],
+      'desc' => $entity->field_downloadcenter_description[LANGUAGE_NONE][0]['value'],
+      'file' => $entity->field_downloadcenter_file[LANGUAGE_NONE][0]['fid'],
+    );
+  }
+  
+  $form['sig'] = array(
+    '#type' => 'container',
+  );
+  if(!empty($form_state['storage']['sig_selected_files'])) {
+    $thanks = t('Thank you for your request, download will start automatically.');
+    $form['sig']['thanks'] = array(
+      '#markup' => '<div class="sig-thanks">'. $thanks . '</div>'
+    );
+    
+    foreach ($form_state['storage']['sig_selected_files'] as $fid => $selected) {
+      if($selected > 0) {
+        $file = file_load($fid);
+        $form['sig']['file_'.$fid] = array(
+          '#markup' => theme('file_link', array('file' => $file)),
+          '#prefix' => '<div class="sig-file-auto">',
+          '#suffix' => '</div>',
+        );
+      }
+    }
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'sig_download') . '/sig_download.js',
+    );
+    
+    return $form;
+  }
+  
+  if (empty($files_info)) {
+    $form['sig']['info'] = array(
+      '#markup' => t('No files to download.'),
+      '#prefix' => '<div class="sig-form-info">',
+      '#suffix' => '</div>',
+    );
+  } else {
+    $options = array();
+
+    foreach ($files_info as $item) {
+      $options[$item['file']] = '<div class="sig-option-info"><p>' . $item['title'] . '</p>' . $item['desc'] . '</div>';
+    }
+
+    $form['sig']['files'] = array(
+      '#type' => 'checkboxes',
+      '#options' => $options,
+      '#required' => true,
+    );
+    
+    $form['sig']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Download'),
+        '#prefix' => '<div class="form-actions"><div class="extra_div">',
+        '#suffix' => '</div></div>',
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * sig_downloadcenter_list_form submit CALLBACK
+ */
+function sig_downloadcenter_list_form_submit($form, &$form_state) {
+  $form_state['storage']['sig_selected_files'] = $form_state['values']['files'];
+  $form_state["rebuild"] = true;
+}

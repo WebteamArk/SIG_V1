@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file sig_messages.module
+ * @author Jacek Szmit
+ */
+
+define('SIG_MESSAGES_MAIL_KEY', 'sig_messages_mail_key');
+
+/**
+ * Implements hook_menu().
+ */
+function sig_messages_menu() {
+  $items['admin/config/sigmessages'] = array(
+    'title' => 'Configure sig messages',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('variable_module_form', 'sig_messages'),
+    'access arguments' => array('administer sig messages'),
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function sig_messages_permission() {
+  $permissions['administer sig messages'] = array(
+    'title' => t('Administer sig messages'),
+    'description' => t('Edit, translate sig messages.'),
+  );
+
+  return $permissions;
+}
+
+
+/**
+ * Implements hook_mail().
+ */
+function sig_messages_mail($key, &$message, $params) {
+  switch ($key) {
+    case SIG_MESSAGES_MAIL_KEY:
+      $message['subject'] = variable_get_value('sig_messages_mail_subject');
+      $message['body'][] = variable_get_value('sig_messages_mail_body');
+      break;
+    default:
+      break;
+  }
+}
+
+/**
+ * Helper function to send email message
+ * 
+ * @param string $email
+ */
+function _sig_messages_mail_send($email) {
+  global $language;
+  $module = 'sig_messages';
+  $params = array();
+  drupal_mail($module, SIG_MESSAGES_MAIL_KEY, $email, $language, $params);
+}

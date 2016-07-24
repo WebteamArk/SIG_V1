@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file sig_cases.module
+ * @author Jacek Szmit
+ */
+
+define('SIG_EMAIL_COOKIE', 'sig_email_registered');
+define('SIG_EMAIL_ENTITY', 'email_collect');
+
+/**
+ * Implements hook_menu().
+ */
+function sig_cases_menu() {
+  $items['case/%node/download'] = array(
+    'title' => 'Case download',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sig_download_case_form', 1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * sig_download_case_form CALLBACK
+ */
+function sig_download_case_form($form, &$form_state, $case) {
+  if($case->type != 'case_page') {
+    $form['info'] = array(
+      '#markup' => '<div style="height: 150px;"></div><p style="text-align: center">' . t('Invalid page request.') . '</p>',
+    );
+    return $form;
+  }
+  if (isset($_COOKIE[SIG_EMAIL_COOKIE])) {
+    $thanks = t('Thank you for your request, download will start automatically.');
+    $view = node_view($case, 'download');
+    $file = render($view);
+    $form['case'] = array(
+      '#markup' => '<div class="sig-thanks">'. $thanks. '</div>' . $file,
+    );
+    $form['#attached']['js'] = array(
+      drupal_get_path('module', 'sig_cases') . '/sig_cases.js',
+    );
+  }
+  else {
+    $form['sig'] = array(
+      '#type' => 'container',
+    );
+    $form['sig']['info'] = array(
+      '#markup' => t('Enter Your email address to download file.'),
+      '#prefix' => '<div class="sig-form-info">',
+      '#suffix' => '</div>',
+    );
+    $form['sig']['email'] = array(
+      '#type' => 'textfield',
+      //'#title' => t('Email'),
+      '#required' => true,
+      '#element_validate' => array('_sig_case_email_validate'),
+      '#attributes' =>array('placeholder' => t('Email*'))
+    );
+    $form['sig']['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+      '#prefix' => '<div class="form-actions"><div class="extra_div">',
+      '#suffix' => '</div></div>',
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * email element_validate CALLBACK
+ */
+function _sig_case_email_validate($element, &$form_state, $form) {
+  $value = $element['#value'];
+  if (!valid_email_address($value)) {
+    form_error($element, t('Please enter a valid email address.'));
+  }
+}
+
+/**
+ * sig_download_case_form_submit CALLBACK
+ */
+function sig_download_case_form_submit($form, &$form_state) {
+  global $cookie_domain;
+  
+  if (!isset($_COOKIE[SIG_EMAIL_COOKIE])) {
+    setcookie(SIG_EMAIL_COOKIE,1,time() + (86400 * 365), '/', $cookie_domain);
+  }
+  
+  $email = $form_state['values']['email'];
+  if(_sig_case_save_email_entity($email)) {
+    _sig_messages_mail_send($email);
+  }
+}
+
+/**
+ * Save email entity if not exist.
+ * @param string $email
+ * @return boolean
+ */
+function _sig_case_save_email_entity($email) {
+  if(_sig_case_check_email_entity_exists($email)) {
+    return false;
+  }
+  
+  $email_collect_values = array(
+    'type' => SIG_EMAIL_ENTITY,
+    'title' => $email,
+  );
+  
+  $email_collect = entity_create(SIG_EMAIL_ENTITY, $email_collect_values);
+  $email_collect->save();
+  
+  return true;
+}
+
+/**
+ * Check if email exists already.
+ * @param string $email
+ * @return boolean
+ */
+function _sig_case_check_email_entity_exists($email) {
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', SIG_EMAIL_ENTITY)
+  ->propertyCondition('title', $email)
+  ->range(0,1)
+  ->execute();
+
+  return (!empty($entities[SIG_EMAIL_ENTITY])) ? true : false;
+}

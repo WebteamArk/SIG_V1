@@ -1,0 +1,6 @@
+name = Sig Cases
+description = Case download mechanism
+dependencies[] = entity
+dependencies[] = sig_messages
+package = Custom
+core = 7.x
