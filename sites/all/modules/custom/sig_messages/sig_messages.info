@@ -1,0 +1,5 @@
+name = Sig Messages
+description = Email messages for downloads
+dependencies[] = variable
+package = Custom
+core = 7.x

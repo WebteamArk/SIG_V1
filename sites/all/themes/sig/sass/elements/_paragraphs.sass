@@ -11,6 +11,18 @@
       margin-top: 90px
     @include breakpoint($m)
       margin-top: 50px
+.front .entity-paragraphs-item.paragraphs-item-quote
+  margin-bottom: 100px
+  @include breakpoint($t)
+    margin-bottom: 90px
+  @include breakpoint($m)
+    margin-bottom: 50px
+  .field-item
+    p:before
+      content: "\201E"
+    p:after
+      content: "\201C"
+
 .entity-paragraphs-item.paragraphs-item-image
   margin-top: 25px
   @include breakpoint($t)
@@ -33,15 +45,19 @@
   text-transform: uppercase
   @include breakpoint($d)
     font-size: 25px
-    line-height: 30px
+    line-height: 32px
   @include breakpoint($t)
     font-size: 25px
-    line-height: 30px
+    line-height: 32px
   @include breakpoint($m)
     font-size: 12px
     line-height: 16px
   p
     margin: 0
+    // &::before
+    //   content: "&ldquo;"
+    // &::after
+    //   content: "&ldquo;"
 
 // VIDEO
 .paragraphs-item-intro-video
@@ -99,32 +115,67 @@
       background-repeat: no-repeat
       background-position: center center
       background-size: cover
-    .field-name-field-slogans
+    .field-name-field-slogans.color-bg
       position: relative
       z-index: 2
       width: 50%
       height: 335px
       background: transparent url('i/slogan-d-100b.png') no-repeat right center
-      +box-sizing(border-box)
+      @include breakpoint($t)
+        height: 315px
+      @include breakpoint($m)
+        height: 210px
+        width: 100%
+        background-position: left center
+    .field-name-field-slogans.text
+      position: relative
+      margin-top: -335px
+      z-index: 3
+      height: 335px
       font-weight: 300
       font-size: 27px
       line-height: 31px
       color: #fff
       text-transform: uppercase
-      &::after
-        @include clearfix
+
+      margin-left:  auto
+      margin-right: auto
+      max-width: 1280px
+      @include breakpoint($d)
+        padding-left: 5%
+        padding-right: 5%
+      @include breakpoint($t)
+        padding-left: 8%
+        padding-right: 8%
+      @include breakpoint($m)
+        padding-left: 8%
+        padding-right: 8%
+
       @include breakpoint($t)
         height: 315px
+        margin-top: -315px
+
       @include breakpoint($m)
         height: 210px
+        margin-top: -210px
+        font-size: 21px
+        line-height: 27px
+
       .field-items
-        padding: 100px 0 0 100px
+        padding: 100px 0 0 0px
         @include breakpoint($t)
-          padding: 90px 0 0 90px
+          padding: 90px 0 0 0px
         @include breakpoint($m)
-          padding: 50px 0 0 50px
+          padding: 50px 0 0 0px
+.entity-paragraphs-item.paragraphs-item-slogan-block .slogan-box .field-name-field-slogans.color-bg
+  width: 0%
+.entity-paragraphs-item.paragraphs-item-slogan-block .slogan-box .field-name-field-slogans.text
+  display: none
+
+
 // LINK
 .paragraphs-item-link
+  text-transform: uppercase
   @include breakpoint($t)
     margin: 60px 0 0 0
   @include breakpoint($m)
@@ -133,6 +184,19 @@
     text-align: center
     .field-item
       @include link-style
+
+// paragraphs-item-case-download-link
+.paragraphs-item-case-download-link
+  text-transform: uppercase
+  @include breakpoint($t)
+    margin: 60px 0 0 0
+  @include breakpoint($m)
+    margin: 40px 0 0 0
+  .field-name-field-case-download-link
+    text-align: center
+    .field-item
+      @include link-style
+
 
 // paragraphs-item-intro-text
 .paragraphs-item-intro-text
@@ -162,12 +226,17 @@
   .field-type-text
     @include blockTitle
     margin-top: 25px
+    font-size: 21px
+    letter-spacing: 1px
     @include breakpoint($t)
       margin-top: 0
+    @include breakpoint($m)
+      font-size: 16px
   .field-type-image
     @include breakpoint($t)
       float: left
       margin: 0 30px 0 0
+
 // paragraphs-item-block-b-x3 - FACTS ???
 .paragraphs-item-block-b-x3
   text-align: center
@@ -200,6 +269,9 @@
   .field-name-field-title-2,
   .field-name-field-title-3
     @include blockTitle
+    font-weight: bold
+
+
 
 // paragraphs-item-block-t-b-x4
 .paragraphs-item-block-t-b-x4

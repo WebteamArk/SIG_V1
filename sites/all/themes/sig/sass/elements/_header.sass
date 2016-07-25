@@ -8,22 +8,41 @@
   border-top: 10px solid #fff
   height: auto
   z-index: 2
-  min-height: 54px
+  // +transition(all 800ms linear)
+  max-height: 64px
+  overflow: hidden
+  +transition-property(all)
+  +transition-duration(1500ms)
+  +transition-timing-function(cubic-bezier(0, 1, 0.5, 1))
+  @include breakpoint($d)
+    +transition-duration(5000ms)
   @include breakpoint($m)
     min-height: 50px
+    +transition-duration(5000ms)
+  &.npx-expanded
+    max-height: 250px
+    @media (min-width: 768px) and (max-width: 1280px)
+      max-height: 1200px
+    @include breakpoint($m)
+      max-height: 1200px
+  &:not(.npx-expanded) .responsive-menus > ul#rm-no-id ul
+    display: none
   .front &
     background-color: #294754
     background-color: rgba(41,71,84,0.75)
   &::after
     @include clearfix
-  @include breakpoint($d)
-    background-image: url('i/logo-left-54.png')
-    background-repeat: no-repeat
-    background-position: center top
+  // @include breakpoint($d)
+  //   background-image: url('i/logo-left-54.png')
+  //   background-repeat: no-repeat
+  //   background-position: center top
   .header-inner
-    max-width: 1200px
     margin: 0 auto
     position: relative
+    min-height: 54px
+    // max-width: 1200px
+    @include breakpoint($m)
+      min-height: 50px
   // logo
   #logo-outer
     background: transparent url('i/logo-bg.png') no-repeat right top
@@ -71,6 +90,7 @@
       .responsive-menus
         > ul#rm-no-id
           margin: 23px 30px 23px 0
+          margin: 16px 30px 23px 0
     @include breakpoint($m)
       .responsive-menus
         > ul#rm-no-id
@@ -121,17 +141,20 @@
         margin: 0
         list-style-type: none
         list-style-image: none
-        height: 0px
-        overflow: hidden
-        &.npx-expanded
-          height: auto
-          overflow: visible
+
+
+        // &.npx-expanded
+        //   max-height: 500px
+        //   overflow: visible
+
     a
       color: #fff
       text-decoration: none
       display: inline-block
       padding: 0 0 0 11px
       line-height: 20px
+      font-weight: 300
+    a:hover,
     a.is-active-trail
       font-family: 'Open Sans'
       font-weight: 700

@@ -22,6 +22,10 @@ textarea
   @include link-style
   clear: both
   padding-top: 70px
+  @include breakpoint($t)
+    padding-top: 60px
+  @include breakpoint($m)
+    padding-top: 40px
   @include wrapper-submit-button
   .extra_div
     display: inline-block
@@ -35,6 +39,8 @@ textarea
     border: none
     position: relative
     z-index: 1
+    &:hover
+      background-color: $Kolor1
 .select-wrapper
   width: 100%
   background: #f2f2f2
@@ -80,3 +86,64 @@ textarea
   .fieldset-legend,
   .fieldset-description
     display: none
+
+#sig-download-case-form
+  @include paragraph-center
+  max-width: 600px
+  padding-top: 70px
+  @include breakpoint($t)
+    padding-top: 60px
+  @include breakpoint($m)
+    padding-top: 40px
+  .form-item-email, .form-actions
+    margin-top: 50px
+    padding-top: 0
+    @include breakpoint($t)
+      margin-top: 40px
+      padding-top: 0
+    @include breakpoint($m)
+      margin-top: 30px
+      padding-top: 0
+
+#sig-downloadcenter-list-form
+  #edit-sig
+    padding: 0 20% 0 20%
+    @include breakpoint($t)
+      padding: 0 0 0 0
+    @include breakpoint($m)
+      padding: 0 0 0 0
+    .form-item.form-type-checkbox
+      position: relative
+      p
+        margin: 0 0 15px
+        @include breakpoint($m)
+          margin: 0 0 10px
+      input
+        bottom: 0
+        display: block
+        height: 1px
+        left: 0
+        margin: 0
+        position: absolute
+        visibility: hidden
+        width: 1px
+        + label
+          background: transparent url("i/input2.png") no-repeat scroll left center
+          cursor: pointer
+          display: block
+          margin: 0 0 0 50px
+          padding: 0 0 0 0
+          position: relative
+          &:after
+            display: block
+            width: 30px
+            height: 30px
+            content: " "
+            background: #f2f2f2
+            top: 0
+            left: -50px
+            position: absolute
+      input:checked
+        + label
+          &:after
+            background: $KolorMain

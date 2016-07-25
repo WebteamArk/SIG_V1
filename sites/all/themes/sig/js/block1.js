@@ -10,9 +10,14 @@
 (function ($, Drupal, window, document, undefined) {
 
 // To understand behaviors, see https://drupal.org/node/756722#behaviors
-//Drupal.behaviors.sigBlock1Animation = {
-//  attach: function(context, settings) {
-    //Function only needs to be called on scroll
+Drupal.behaviors.sigBlock1Animation = {
+  attach: function(context, settings) {
+    $('#block-block-1', context).once('sig-block1-anim', function() {
+      $(window).scroll();
+    })
+  }
+};
+//Function only needs to be called on scroll
     $(window).scroll(function() {
       //Only needs to be called when the svg is available
       if ($('#city').length) {
@@ -29,7 +34,7 @@
           $devider = 0.5;
         }
         else{
-          $devider = 2.5;
+          $devider = 1.5;
         }
         //Variables for the width of the element, distance to top,...
         var viewportHeight = $(window).height(),
@@ -80,8 +85,6 @@
     //*****************************
     // Scroll END
     //*****************************
-//  }
-//};
 
 
 })(jQuery, Drupal, this, this.document);

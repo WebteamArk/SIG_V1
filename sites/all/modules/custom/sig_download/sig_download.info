@@ -1,0 +1,7 @@
+name = Sig Download
+description = Download center mechanism
+dependencies[] = entity
+dependencies[] = sig_messages
+dependencies[] = sig_cases
+package = Custom
+core = 7.x

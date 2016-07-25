@@ -1,8 +1,10 @@
+.node-case-page.view-mode-header,
 #block-ds-extras-top-image-with-title,
 #block-ds-extras-top-image-with-title-2,
 #block-ds-extras-top-image-with-title-3,
 #block-ds-extras-top-image-with-title-4,
-#block-ds-extras-top-image-with-title-5
+#block-ds-extras-top-image-with-title-5,
+#block-ds-extras-top-image-with-title-7
   position: relative
   margin: 0 0 0 0
   img
@@ -61,7 +63,7 @@
     .field-name-field-intro-image
       overflow: hidden
       height: 375px
-      background-position: right top
+      background-position: right center
       background-repeat: no-repeat
       background-size: cover
       @include breakpoint($t)
@@ -81,6 +83,7 @@
       left: 0
       z-index: 1
       display: table
+      text-transform: uppercase
       .field-items
         display: table-row
         .field-item
@@ -104,3 +107,14 @@
           .field-item
             font-size: 20px
             line-height: 25px
+
+#block-sig-download-sid-downloadcenter
+  @include paragraph-center
+  margin-top: 70px
+  @include breakpoint($t)
+    margin-top: 60px
+  @include breakpoint($m)
+    margin-top: 40px
+  // form
+  //   max-width: 600px
+  //   margin: 0 auto
