@@ -27,19 +27,28 @@ Drupal.behaviors.sigMainMenu = {
   }
 };
 
+Drupal.behaviors.sigFooterMenu = {
+  attach: function(context, settings) {
+    $('#block-menu-menu-footer-menu li.column span.nolink', context).once('sig-footer-menu', function () {
+      $(this).click(function () {
+        $(this).toggleClass('npx-expanded');
+      });
+    });
+  }
+};
+
 Drupal.behaviors.sigSlogans = {
   attach: function(context, settings) {
     $('.paragraphs-item-slogan-block .slogan-box', context).once('sig-slogans', function() {
-      $(this).waypoint(function() {
+      $(this).waypoint(function(event, direction) {
         var duration = 600;
-        var width = "50%";
-        if ($(window).width() <=768) {
-          width = "100%";
-        }
-        $bg = $(this).find('div.color-bg');
         $text = $(this).find('div.text');
-        $text.fadeIn(duration);
-        $bg.animate({width: width}, duration + (duration/2));
+        if(direction == 'down') {
+          $text.fadeIn(duration);
+        }
+        else {
+          $text.fadeOut(duration);
+        }
       }, 
       { offset: '50%', });
     });
@@ -49,12 +58,16 @@ Drupal.behaviors.sigSlogans = {
 Drupal.behaviors.sigImagesOverlay = {
   attach: function(context, settings) {
     $('div.image-overlay-outer', context).once('sig-images', function() {
-      $(this).waypoint(function() {
+      $(this).waypoint(function(event, direction) {
         var duration = 400;
+        var right = 0;
         $bg = $(this).find('div.image-overlay');
-        $bg.animate({right: 0}, duration);
+        if(direction == 'up') {
+          right = '-30%';
+        }
+        $bg.animate({right: right}, duration);
       }, 
-      { offset: '50%', triggerOnce: true});
+      { offset: '40%', triggerOnce: false});
     });
   }
 };
@@ -109,5 +122,39 @@ function humanizeNumber(n) {
   }
   return n
 }
+
+// Calculate element visibility in viewport
+function percentageSeen ($element) {
+  var viewportHeight = $(window).height(),
+      scrollTop = $(window).scrollTop(),
+      elementOffsetTop = $element.offset().top,
+      elementHeight = $element.height();
+
+  if (elementOffsetTop > (scrollTop + viewportHeight)) {
+    return 0;
+  } else if ((elementOffsetTop + elementHeight) < scrollTop) {
+    return 100;
+  } else {
+    var distance = (scrollTop + viewportHeight) - elementOffsetTop;
+    var percentage = distance / ((viewportHeight + elementHeight) / 100);
+    percentage = Math.round(percentage);
+    return percentage;
+  }
+}
+
+$(window).scroll(function () {
+  var maxWidth = "50";
+  if ($(window).width() <=768) {
+    maxWidth = "100";
+  }
+  $('.paragraphs-item-slogan-block .slogan-box div.color-bg').each( function() {
+    $bg = $(this);
+    var percentage = percentageSeen($bg) * 1.7;
+    if (percentage > maxWidth) {
+      percentage = maxWidth;
+    }
+    $bg.css('width', percentage + '%');
+  });
+});
 
 })(jQuery, Drupal, this, this.document);

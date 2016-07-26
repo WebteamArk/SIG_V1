@@ -6,27 +6,52 @@
   left: 0px
   width: 100%
   border-top: 10px solid #fff
-  height: auto
   z-index: 2
-  // +transition(all 800ms linear)
-  max-height: 64px
-  overflow: hidden
-  +transition-property(all)
-  +transition-duration(1500ms)
-  +transition-timing-function(cubic-bezier(0, 1, 0.5, 1))
-  @include breakpoint($d)
+
+  // +transition-property(all)
+  // +transition-duration(1500ms)
+  // +transition-timing-function(cubic-bezier(0, 1, 0.5, 1))
+  @include breakpoint($t)
     +transition-duration(5000ms)
   @include breakpoint($m)
     min-height: 50px
     +transition-duration(5000ms)
-  &.npx-expanded
-    max-height: 250px
-    @media (min-width: 768px) and (max-width: 1280px)
-      max-height: 1200px
-    @include breakpoint($m)
-      max-height: 1200px
+  // &.npx-expanded
+  // &:hover
+  // &.npx-expanded
+  //   @media (min-width: 768px) and (max-width: 1280px)
+  //     height: 642px
+  //   @include breakpoint($m)
+  //     height: 642px
+
+  &.npx-expanded .responsive-menus > ul#rm-no-id ul
+    height: 96px
+    transition: height 1000ms ease-out
+    overflow: hidden
   &:not(.npx-expanded) .responsive-menus > ul#rm-no-id ul
-    display: none
+    height: 0px
+    transition: height 1000ms ease-out
+    overflow: hidden
+    // display: none
+
+  &:not(.npx-expanded)
+    .responsive-menus.responsified
+      .responsive-menus-simple
+        height: 0px
+        transition: height 1000ms ease-out
+        overflow: hidden
+        display: block
+        margin: 0
+        padding: 0
+  &.npx-expanded
+    .responsive-menus.responsified
+      .responsive-menus-simple
+        height: 560px
+        transition: height 1000ms ease-out
+        overflow: hidden
+        display: block
+        margin: 0
+        padding: 0
   .front &
     background-color: #294754
     background-color: rgba(41,71,84,0.75)
@@ -57,6 +82,9 @@
     @include breakpoint($m)
       min-height: 50px
       min-width: 208px
+      text-align: left
+      +box-sizing(border-box)
+      padding-left: 12px
     a#logo
       display: inline-block
       float: none
@@ -198,3 +226,7 @@
 .front #header .responsive-menus.responsified .responsive-menus-simple
   background-color: #294754
   background-color: rgba(41,71,84,0.75)
+
+.responsive-menus.responsified .responsive-menus-simple
+  display: block
+  padding: 0

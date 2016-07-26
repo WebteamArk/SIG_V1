@@ -31,7 +31,10 @@ Drupal.behaviors.sigBlock1Animation = {
 
         //Different scroll effects for smaller screens
         if ($(window).width() <=800) {
-          $devider = 0.5;
+          $devider = 1;
+        }
+        else if ($(window).width() <=400) {
+          $devider = 2;
         }
         else{
           $devider = 1.5;
