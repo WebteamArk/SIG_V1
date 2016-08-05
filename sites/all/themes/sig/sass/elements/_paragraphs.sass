@@ -50,14 +50,14 @@
     font-size: 25px
     line-height: 32px
   @include breakpoint($m)
-    font-size: 12px
+    font-size: 14px
     line-height: 16px
   p
     margin: 0
-    // &::before
-    //   content: "&ldquo;"
-    // &::after
-    //   content: "&ldquo;"
+    &:before
+      content: "\201E"
+    &:after
+      content: "\201C"
 
 // VIDEO
 .paragraphs-item-intro-video
@@ -254,6 +254,8 @@
     .group-right
       .field
         display: inline-block
+  &.sig-counter-animation-processed
+    line-height: 100%
 @include breakpoint($m)
   .field-item > .paragraphs-item-block-b-x3.entity-paragraphs-item
     margin-top: 20px
@@ -340,3 +342,8 @@
   .field-name-field-title-1,
   .field-name-field-title-2
     @include blockTitle
+
+// paragraphs-item-image-standard
+.paragraphs-item-image-standard
+  @include breakpoint($m)
+    display: none

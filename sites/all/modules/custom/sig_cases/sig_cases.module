@@ -49,9 +49,15 @@ function sig_download_case_form($form, &$form_state, $case) {
       '#type' => 'container',
     );
     $form['sig']['info'] = array(
-      '#markup' => t('Enter Your email address to download file.'),
+      '#markup' => t('Enter Your name and email address to download file.'),
       '#prefix' => '<div class="sig-form-info">',
       '#suffix' => '</div>',
+    );
+    $form['sig']['name'] = array(
+      '#type' => 'textfield',
+      //'#title' => t('Name'),
+      '#required' => true,
+      '#attributes' =>array('placeholder' => t('Name*'))
     );
     $form['sig']['email'] = array(
       '#type' => 'textfield',
@@ -91,8 +97,9 @@ function sig_download_case_form_submit($form, &$form_state) {
     setcookie(SIG_EMAIL_COOKIE,1,time() + (86400 * 365), '/', $cookie_domain);
   }
   
+  $name = $form_state['values']['name'];
   $email = $form_state['values']['email'];
-  if(_sig_case_save_email_entity($email)) {
+  if(_sig_case_save_email_entity($name, $email)) {
     _sig_messages_mail_send($email);
   }
 }
@@ -102,14 +109,16 @@ function sig_download_case_form_submit($form, &$form_state) {
  * @param string $email
  * @return boolean
  */
-function _sig_case_save_email_entity($email) {
+function _sig_case_save_email_entity($name, $email) {
   if(_sig_case_check_email_entity_exists($email)) {
     return false;
   }
   
   $email_collect_values = array(
     'type' => SIG_EMAIL_ENTITY,
-    'title' => $email,
+    'title' => $email . ' ' . $name,
+    'field_ec_name' => $name,
+    'field_ec_email' => $email,
   );
   
   $email_collect = entity_create(SIG_EMAIL_ENTITY, $email_collect_values);
@@ -126,7 +135,8 @@ function _sig_case_save_email_entity($email) {
 function _sig_case_check_email_entity_exists($email) {
   $query = new EntityFieldQuery();
   $entities = $query->entityCondition('entity_type', SIG_EMAIL_ENTITY)
-  ->propertyCondition('title', $email)
+  ->propertyCondition('type', SIG_EMAIL_ENTITY)
+  ->fieldCondition('field_ec_email', 'value', $email, '=')
   ->range(0,1)
   ->execute();
 

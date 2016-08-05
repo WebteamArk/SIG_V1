@@ -29,6 +29,7 @@ textarea
   @include wrapper-submit-button
   .extra_div
     display: inline-block
+
   input.form-submit
     color: #fff
     display: inline-block
@@ -88,6 +89,15 @@ textarea
     display: none
 
 #sig-download-case-form
+  margin-top: 70px
+  @include breakpoint($t)
+    margin-top: 60px
+  @include breakpoint($m)
+    margin-top: 40px
+  .sig-form-info
+    margin: 0 0 15px
+    @include breakpoint($m)
+      margin: 0 0 10px
   @include paragraph-center
   max-width: 600px
   padding-top: 70px
@@ -95,7 +105,8 @@ textarea
     padding-top: 60px
   @include breakpoint($m)
     padding-top: 40px
-  .form-item-email, .form-actions
+
+  .form-actions
     margin-top: 50px
     padding-top: 0
     @include breakpoint($t)
@@ -147,3 +158,5 @@ textarea
         + label
           &:after
             background: $KolorMain
+.form-actions .extra_div:hover input.form-submit
+  background: $Kolor1

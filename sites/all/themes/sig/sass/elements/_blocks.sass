@@ -118,3 +118,114 @@
   // form
   //   max-width: 600px
   //   margin: 0 auto
+
+#block-sig-press-sig-pressroom
+  .press-list
+    @include paragraph-center
+    margin-top: 100px
+    .press-item
+      width: 25%
+      float: left
+      padding: 0 10px 40px
+      +box-sizing(border-box)
+      @include breakpoint($t)
+        width: 50%
+        float: left
+        padding: 0 15px 40px
+      @include breakpoint($m)
+        width: 100%
+        float: none
+        padding: 0 0px 40px
+      a
+        text-decoration: none
+        // cursor: url("http://slot9.dummysite.eu/_/pointer.ani"), auto
+        &:hover, &:active
+          text-decoration: none
+      .press-image
+        margin-bottom: 25px
+        img
+          display: block
+      .press-title
+        h2
+          @mixin blockTitle
+          line-height: 120%
+          margin: 0 0 25px
+          a
+            color: #000
+          text-decoration: none
+          &:hover, &:active
+            text-decoration: none
+      .press-body
+        margin-bottom: 25px
+        a
+          color: $KolorMain
+          text-transform: uppercase
+          display: inline-block
+          margin-left: 5px
+          text-decoration: none
+          font-weight: 700
+    .press-row:nth-child(2n+2)
+      .press-image
+        height: 25vw
+        background: transparent url('http://cms.arkservice.be/CMS_pictures/ark2014/2016620151339893-sig-visual-small.jpg') no-repeat center top / cover
+        img
+          display: none
+  .press-full
+    @include paragraph-center
+    margin-top: 70px
+    @include breakpoint($t)
+      margin-top: 60px
+    @include breakpoint($m)
+      margin-top: 40px
+    .press-date,
+    .press-image,
+    .press-title,
+    .press-body,
+    .press-item-section,
+    .field-item
+      margin: 0 25% 40px
+      @include breakpoint($t)
+        margin: 0 10%
+      @include breakpoint($m)
+        margin: 0 5%
+    .press-title
+      border-bottom: 2px solid #294854
+      box-sizing: border-box
+      color: #294854
+      display: inline-block
+      font-size: 30px
+      font-weight: 300
+      line-height: 30px
+      text-transform: uppercase
+      margin-bottom: 40px
+      padding-bottom: 20px
+      margin-top: 0
+      @include breakpoint($t)
+        margin-bottom: 30px
+        padding-bottom: 20px
+        margin-top: 0
+      @include breakpoint($m)
+        margin-bottom: 20px
+        padding-bottom: 20px
+        margin-top: 0
+    .press-date
+      font-weight: 700
+    .section-title
+      font-size: 22px
+      border-bottom: 2px solid #294854
+      box-sizing: border-box
+      color: #294854
+      display: inline-block
+      padding: 0 0 10px
+      margin: 0 0 10px
+    .section-files
+      a
+        display: block
+        margin: 0 0 10px
+      img
+        display: inline-block
+        width: 23%
+        margin: 0 1% 10px 0
+        vertical-align: top
+        @include breakpoint($m)
+          width: 48%

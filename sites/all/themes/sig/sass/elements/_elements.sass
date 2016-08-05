@@ -13,6 +13,28 @@ a:hover, a:active
   //   padding: 0 0 0 0
   // @include breakpoint($m)
   //   padding: 0 0 0 0
+  h2
+    font-weight: 300
+    font-size: 30px
+    line-height: 30px
+    display: inline-block
+    text-transform: uppercase
+    padding: 0 0px 20px
+    margin: 0 20%
+    color: $Kolor1
+    border-bottom: 2px solid $Kolor1
+    +box-sizing(border-box)
+    @include breakpoint($t)
+      font-size: 30px
+      line-height: 40px
+      padding: 0 0px 20px
+      margin: 0px 0 0px
+    @include breakpoint($m)
+      font-size: 15px
+      line-height: 18px
+      padding: 0 0px 10px
+      margin: 0px 0 0px
+
 
 .text-center
   text-align: center
@@ -50,6 +72,15 @@ h2
   @include breakpoint($m)
     font-size: 15px
     line-height: 32px
+.sig-counter-animation-processed
+  h3
+    font-size: 40px
+    line-height: 55px
+    font-weight: 400
+    margin: 0 0 0px
+
+
+
 .position-center
   @include paragraph-center
 .styles-align-center

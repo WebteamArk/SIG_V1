@@ -52,8 +52,21 @@
         @include breakpoint($m)
           display: block
           text-align: center
-          ul
+          span
+            cursor: pointer
+          span + ul.menu
             display: none
+            text-align: center
+            margin: 0 0 15px
+          span.npx-expanded + ul.menu
+            display: block
+          &:nth-child(4)
+            span
+              cursor: auto
+            span + ul.menu
+              display: block
+            span.npx-expanded + ul.menu
+            display: block
       li.column.social
         ul
           display: block
