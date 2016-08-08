@@ -18,76 +18,108 @@ Drupal.behaviors.sigBlock1Animation = {
   }
 };
 //Function only needs to be called on scroll
-    $(window).scroll(function() {
-      //Only needs to be called when the svg is available
-      if ($('#city').length) {
+$(window).scroll(function() {
+  //Only needs to be called when the svg is available
+  if ($('#city').length) {
+      //Variables
+    $element = $('svg');
+    $airplane = $('#vliegtuig')
+    $ambulance = $('#ambulance')
+    $railway = $('#railway')
+    $tram = $('#tram')
+    $bus = $('#bus')
+    $clouds = $('.st0')
+    $win = $(window);
 
-          //Variables
-        $element = $('svg');
-        $airplane = $('#airplane')
-        $bus = $('#bus')
-        $clouds = $('.st0')
-        $win = $(window);
-
-        //Different scroll effects for smaller screens
-        if ($(window).width() <=800) {
-          $devider = 1;
+    //Different scroll effects for smaller screens
+    if ($(window).width() <=800) {
+      $devider = 1;
+    }
+    else{
+      $devider = 2.5;
+    }
+    //Variables for the width of the element, distance to top,...
+    var viewportHeight = $(window).height(),
+      scrollTop = $win.scrollTop(),
+      elementOffsetTop = $element.offset().top,
+      elementHeight = $element.height();
+      elementWidth = $element.width()/$devider;
+    //Calculation for when the elemnt is in the vieuwport
+    var distance = (scrollTop + viewportHeight) - elementOffsetTop -elementWidth;
+    
+    // Scroll effect for the plane
+        if ($airplane) {
+          //Variable for the movement change
+        var translate = distance - elementHeight +'px,'+-distance/6+ 'px';
+          $airplane.css({
+            //Different transforms for all browser support
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
         }
-        else if ($(window).width() <=400) {
-          $devider = 2;
+    // Scroll effect for the bus
+        if ($bus) {
+        var translate = distance/3 - 200 +'px, -0px';
+          $bus.css({
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
         }
-        else{
-          $devider = 1.5;
+        // Scroll effect for the tram
+        if ($tram) {
+        var translate = distance/25 + 75 +'px, -0px';
+          $tram.css({
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
         }
-        //Variables for the width of the element, distance to top,...
-        var viewportHeight = $(window).height(),
-          scrollTop = $win.scrollTop(),
-          elementOffsetTop = $element.offset().top,
-          elementHeight = $element.height();
-          elementWidth = $element.width()/$devider;
-        //Calculation for when the elemnt is in the vieuwport
-        var distance = (scrollTop + viewportHeight) - elementOffsetTop -elementWidth;
-        
-        // Scroll effect for the plane
-            if ($airplane) {
-              //Variable for the movement change
-            var translate = distance +'px,'+-distance/6+ 'px';
-              $airplane.css({
-                //Different transforms for all browser support
-                  '-webkit-transform': 'translate(' + translate + ')',
-                  '-moz-transform': 'translate(' + translate + ')',
-                  '-ms-transform': 'translate(' + translate + ')',
-                  '-o-transform': 'translate(' + translate + ')',
-                  'transform': 'translate(' + translate + ')'
-              });
-            }
-        // Scroll effect for the bus
-            if ($bus) {
-            var translate = distance/3 +'px, -0px';
-              $bus.css({
-                  '-webkit-transform': 'translate(' + translate + ')',
-                  '-moz-transform': 'translate(' + translate + ')',
-                  '-ms-transform': 'translate(' + translate + ')',
-                  '-o-transform': 'translate(' + translate + ')',
-                  'transform': 'translate(' + translate + ')'
-              });
-            }
-        // Scroll effect for the clouds
-            if ($clouds) {
-              var translate = (distance/10)*-1 +'px, -0px';
-              $clouds.css({
-                  '-webkit-transform': 'translate(' + translate + ')',
-                  '-moz-transform': 'translate(' + translate + ')',
-                  '-ms-transform': 'translate(' + translate + ')',
-                  '-o-transform': 'translate(' + translate + ')',
-                  'transform': 'translate(' + translate + ')'
-              });
-            }
-      }   
-    });
-    //*****************************
-    // Scroll END
-    //*****************************
+        // Scroll effect for the ambulance
+        if ($ambulance) {
+        var translate = distance/10 - 100 +'px, -0px';
+          $ambulance.css({
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
+        }
+    // Scroll effect for the clouds
+        if ($clouds) {
+          var translate = (distance/10)*-1 +'px, -0px';
+          $clouds.css({
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
+        }
+        // Scroll effect for the railway
+        if ($railway) {
+          var translate = (distance/10)*-1 +150 +'px, -0px';
+          $railway.css({
+              '-webkit-transform': 'translate(' + translate + ')',
+              '-moz-transform': 'translate(' + translate + ')',
+              '-ms-transform': 'translate(' + translate + ')',
+              '-o-transform': 'translate(' + translate + ')',
+              'transform': 'translate(' + translate + ')'
+          });
+        }         
+  }   
+});
+//*****************************
+// Scroll END
+//*****************************
 
 
 })(jQuery, Drupal, this, this.document);
