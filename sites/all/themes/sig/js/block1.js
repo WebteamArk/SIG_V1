@@ -50,7 +50,7 @@ $(window).scroll(function() {
     // Scroll effect for the plane
         if ($airplane) {
           //Variable for the movement change
-        var translate = distance +'px,'+-distance/6+ 'px';
+        var translate = distance - elementHeight +'px,'+-distance/6+ 'px';
           $airplane.css({
             //Different transforms for all browser support
               '-webkit-transform': 'translate(' + translate + ')',
