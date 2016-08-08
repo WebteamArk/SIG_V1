@@ -112,6 +112,16 @@ Drupal.behaviors.sigCounterAnimation = {
   }
 };
 
+Drupal.behaviors.sigSvgMap = {
+  attach: function(context, settings) {
+    $('#poland', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        alert( "This is poland!" );
+      });
+    });
+  }
+};
+
 // Add thousands separator
 function humanizeNumber(n) {
   n = n.toString()

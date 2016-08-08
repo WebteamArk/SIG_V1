@@ -347,3 +347,60 @@
 .paragraphs-item-image-standard
   @include breakpoint($m)
     display: none
+
+// SVG MAP
+.paragraphs-item-svg-map.ds-3col-equal
+  > .group-left 
+    float: left
+    width: 15%
+    h2 
+      line-height: 130%
+    @include breakpoint($t)
+      float: none
+      width: 100%
+      padding: 0 0 40px
+    @include breakpoint($m)  
+      float: none
+      width: 100%
+      padding: 0 0 40px
+  > .group-middle 
+    width: 60%
+    float: left      
+    padding-left: 40px
+    +box-sizing(border-box)
+    @include breakpoint($t)
+      float: none
+      width: 100%
+      padding: 0 0 40px    
+    @include breakpoint($m)
+      float: none
+      width: 100%
+      padding: 0 0 40px  
+  > .group-right
+    color: $Kolor2
+    text-align: center
+    text-transform: uppercase
+    padding-top: 160px
+    @include breakpoint($d)
+      font-size: 25px
+      line-height: 32px
+    @include breakpoint($t)
+      font-size: 25px
+      line-height: 32px
+      float: none
+      width: 100%
+      padding: 0 0 40px        
+    @include breakpoint($m)
+      font-size: 14px
+      line-height: 16px
+      float: none
+      width: 100%
+      padding: 0 0 40px        
+    p
+      margin: 0
+      &:before
+        content: "\201E"
+      &:after
+        content: "\201C"
+
+
