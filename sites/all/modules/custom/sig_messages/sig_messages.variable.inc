@@ -9,12 +9,33 @@
  * Implements hook_variable_info().
  */
 function sig_messages_variable_info($options) {
-  $variable['sig_messages_mail_[mail_part]'] = array(
-    'title' => t('SIG Download confirmation mail'),
-    'type' => 'mail_text',
+  $variable['sig_messages_case_mail_subject'] = array(
+    'title' => t('Case download mail subject'),
+    'type' => 'string',
     'group' => 'sig',
     'localize' => TRUE,
-    'description' => t('Thank you message after email input in form.', array(), $options),
+    'description' => t('Case Thank you mail subject.', array(), $options),
+  );
+  $variable['sig_messages_download_mail_subject'] = array(
+    'title' => t('Downloadcenter mail subject'),
+    'type' => 'string',
+    'group' => 'sig',
+    'localize' => TRUE,
+    'description' => t('Downloadcenter Thank you mail subject.', array(), $options),
+  );
+  $variable['sig_messages_download_after_mail_subject'] = array(
+    'title' => t('Downloadcenter after 7 days mail subject'),
+    'type' => 'string',
+    'group' => 'sig',
+    'localize' => TRUE,
+    'description' => t('Downloadcenter after 7 days mail subject.', array(), $options),
+  );
+  $variable['sig_messages_ask_us_mail_subject'] = array(
+    'title' => t('Downloadcenter ask us mail subject'),
+    'type' => 'string',
+    'group' => 'sig',
+    'localize' => TRUE,
+    'description' => t('Downloadcenter ask us mail subject.', array(), $options),
   );
 
   return $variable;

@@ -55,8 +55,8 @@ function sig_downloadcenter_email_form($form, &$form_state) {
   );
   $form['sig']['company'] = array(
     '#type' => 'textfield',
-    '#required' => true,
-    '#attributes' =>array('placeholder' => t('Company name*'))
+    '#required' => false,
+    '#attributes' =>array('placeholder' => t('Company name'))
   );
   $form['sig']['firstname'] = array(
     '#type' => 'textfield',
@@ -68,17 +68,81 @@ function sig_downloadcenter_email_form($form, &$form_state) {
     '#required' => true,
     '#attributes' =>array('placeholder' => t('Lastname*'))
   );
-  $form['sig']['address'] = array(
-    '#type' => 'textfield',
+  $form['sig']['profile'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      '' => t('Profile*'),
+      'architect' => t('Architect'),
+      'contractor' => t('Contractor'),
+      'developer' => t('Developer'),
+      'engineering' => t('Engineering'),
+      'installer' => t('Installer'),
+      'Other' => t('Other'),
+    ),
+    '#default_value' => '',
     '#required' => true,
-    '#attributes' =>array('placeholder' => t('Address*'))
+    '#attributes' =>array('placeholder' => t('Profile*')),
+    '#prefix' => '<div class="select-wrapper form-item">',
+    '#suffix' => '</div>',
   );
+//   $form['sig']['address'] = array(
+//     '#type' => 'textfield',
+//     '#required' => true,
+//     '#attributes' =>array('placeholder' => t('Address*'))
+//   );
   $form['sig']['country'] = array(
     '#type' => 'select',
     '#options' => array(
-      '' => 'Country*',
-      'en' => 'item1',
-      'pl' => 'item2',
+      '' => t('Country*'),
+      'AL' => t('Albania'),
+      'AD' => t('Andorra'),
+      'AT' => t('Austria'),
+      'BY' => t('Belarus'),
+      'BE' => t('Belgium'),
+      'BA' => t('Bosnia and Herzegovina'),
+      'BG' => t('Bulgaria'),
+      'HR' => t('Croatia'),
+      'CY' => t('Cyprus'),
+      'CZ' => t('Czech Republic'),
+      'DK' => t('Denmark'),
+      'EE' => t('Estonia'),
+      'FO' => t('Faroe Islands'),
+      'FI' => t('Finland'),
+      'FR' => t('France'),
+      'DE' => t('Germany'),
+      'GI' => t('Gibraltar'),
+      'GR' => t('Greece'),
+      'HU' => t('Hungary'),
+      'IS' => t('Iceland'),
+      'IE' => t('Ireland'),
+      'IM' => t('Isle of Man'),
+      'IT' => t('Italy'),
+      'XK' => t('Kosovo'),
+      'LV' => t('Latvia'),
+      'LI' => t('Liechtenstein'),
+      'LT' => t('Lithuania'),
+      'LU' => t('Luxembourg'),
+      'MK' => t('Macedonia'),
+      'MT' => t('Malta'),
+      'MD' => t('Moldova'),
+      'MC' => t('Monaco'),
+      'ME' => t('Montenegro'),
+      'NL' => t('Netherlands'),
+      'NO' => t('Norway'),
+      'PL' => t('Poland'),
+      'PT' => t('Portugal'),
+      'RO' => t('Romania'),
+      'RU' => t('Russia'),
+      'SM' => t('San Marino'),
+      'RS' => t('Serbia'),
+      'SK' => t('Slovakia'),
+      'SI' => t('Slovenia'),
+      'ES' => t('Spain'),
+      'SE' => t('Sweden'),
+      'CH' => t('Switzerland'),
+      'UA' => t('Ukraine'),
+      'GB' => t('United Kingdom'),
+      'VA' => t('Vatican city'),
     ),
     '#default_value' => '',
     '#required' => true,
@@ -86,11 +150,11 @@ function sig_downloadcenter_email_form($form, &$form_state) {
     '#prefix' => '<div class="select-wrapper form-item">',
     '#suffix' => '</div>',
   );
-  $form['sig']['telephone'] = array(
-    '#type' => 'textfield',
-    '#required' => true,
-    '#attributes' =>array('placeholder' => t('Telephone*'))
-  );
+//   $form['sig']['telephone'] = array(
+//     '#type' => 'textfield',
+//     '#required' => true,
+//     '#attributes' =>array('placeholder' => t('Telephone*'))
+//   );
   $form['sig']['email'] = array(
     '#type' => 'textfield',
     '#required' => true,
@@ -99,9 +163,9 @@ function sig_downloadcenter_email_form($form, &$form_state) {
   );
   $form['sig']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#value' => t('> Submit'),
     '#prefix' => '<div class="form-actions"><div class="extra_div">',
-    '#suffix' => '</div></div>',
+    '#suffix' => '<span class="spanL"></span><span class="spanR"></span></div></div>',
   );
 
   return $form;
@@ -129,12 +193,15 @@ function sig_downloadcenter_email_form_submit($form, &$form_state) {
   $company = $form_state['values']['company'];
   $firstname = $form_state['values']['firstname'];
   $lastname = $form_state['values']['lastname'];
-  $address = $form_state['values']['address'];
+//   $address = $form_state['values']['address'];
+  $address = '--';
   $country = $form_state['values']['country'];
-  $telephone = $form_state['values']['telephone'];
+//   $telephone = $form_state['values']['telephone'];
+  $telephone = '--';
+  $profile = $form_state['values']['profile'];
   $email = $form_state['values']['email'];
-  if(_sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $email)) {
-    _sig_messages_mail_send($email);
+  if(_sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $email)) {
+    _sig_messages_download_mail_send($email, $lastname);
   }
 }
 
@@ -202,9 +269,9 @@ function sig_downloadcenter_list_form($form, &$form_state) {
     
     $form['sig']['submit'] = array(
         '#type' => 'submit',
-        '#value' => t('Download'),
+        '#value' => t('> Download'),
         '#prefix' => '<div class="form-actions"><div class="extra_div">',
-        '#suffix' => '</div></div>',
+        '#suffix' => '<span class="spanL"></span><span class="spanR"></span></div></div>',
     );
   }
 
@@ -224,7 +291,7 @@ function sig_downloadcenter_list_form_submit($form, &$form_state) {
  * @param string $email
  * @return boolean
  */
-function _sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $email) {
+function _sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $email) {
   if(_sig_download_check_email_entity_exists($email)) {
     return false;
   }
@@ -237,7 +304,8 @@ function _sig_download_save_email_entity($company, $firstname, $lastname, $addre
       'field_ecd_lastname' => $lastname,
       'field_ecd_address' => $address,
       'field_ecd_telephone' => $telephone,
-      'field_ec_email' => $email,
+      'field_ecd_profile' => $profile,
+      'field_ecd_email' => $email,
   );
 
   $email_collect = entity_create(SIG_DOWNLOAD_EMAIL_ENTITY, $email_collect_values);
