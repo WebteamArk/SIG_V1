@@ -142,7 +142,25 @@ function sig_block_view_block_1_alter(&$data, $block) {
 function sig_form_alter(&$form, &$form_state, $form_id) {
   if(preg_match("/webform_client_form_/i", $form_id)) {
     $form_structure = &$form['submitted'];
-    $form['actions']['submit']['#prefix'] = '<div class="extra_div">';
-    $form['actions']['submit']['#suffix'] = '</div>';
+    $form['actions']['submit']['#prefix'] = '<div class="extra_div"><div class="divForSpan">';
+    $form['actions']['submit']['#suffix'] = '<span class="spanL"></span><span class="spanR"></span></div></div>';
   }
+}
+
+/**
+ * Implements theme_menu_link()
+ */
+function sig_menu_link(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  $element['#attributes']['class'][] = 'menu-' . $element['#original_link']['mlid'];
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  //$element_title = sprintf('<span class="s1">%s</span><span class="s2">%s</span>', $element['#title'], $element['#title']);
+  //$output = l($element_title, $element['#href'], array_merge($element['#localized_options'], array('html' => true)));
+  $output = l($element['#title'], $element['#href'], array_merge($element['#localized_options'], array('attributes' => array('data-title' => array($element['#title'])))));
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }

@@ -15,6 +15,30 @@ Drupal.behaviors.sigMainMenu = {
         $('#header', context).toggleClass('npx-expanded');
         $('body', context).toggleClass('npx-expanded');
       });
+      $(this).hover(function () {
+        $('#block-system-main-menu .responsive-menus-simple ul', context).addClass('npx-expanded');
+        $('#block-system-main-menu', context).addClass('npx-expanded');
+        $('#header', context).addClass('npx-expanded');
+        $('body', context).addClass('npx-expanded');
+      },
+      function () {
+//        $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
+//        $('#block-system-main-menu', context).removeClass('npx-expanded');
+//        $('#header', context).removeClass('npx-expanded');
+//        $('body', context).removeClass('npx-expanded');
+      });
+    });
+    $('#block-system-main-menu', context).once('sig-main-menu', function () {
+      $(this).hover(function () {
+      },
+      function () {
+        if ($(window).width() > 1279) {
+          $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
+          $('#block-system-main-menu', context).removeClass('npx-expanded');
+          $('#header', context).removeClass('npx-expanded');
+          $('body', context).removeClass('npx-expanded');
+        }
+      });
     });
     $('#block-system-main-menu .responsive-menus > span.toggler', context).once('sig-main-menu', function () {
       $(this).click(function () {
@@ -104,12 +128,22 @@ Drupal.behaviors.sigCounterAnimation = {
           duration: duration,
           easing: 'swing',
           step: function (now) {
-            $(this).text(humanizeNumber(Math.ceil(now)));
+            $(this).text(Drupal.behaviors.sigCounterAnimation.humanizeNumber(Math.ceil(now)));
           }
         });
       }, { offset: '100%', triggerOnce: true});
     });
-  }
+  },
+  humanizeNumber: function(n) {
+    n = n.toString()
+    while (true) {
+      var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
+      if (n == n2) break
+      n = n2
+    }
+    return n
+  },
+
 };
 
 Drupal.behaviors.sigSvgMap = {
@@ -122,16 +156,18 @@ Drupal.behaviors.sigSvgMap = {
   }
 };
 
-// Add thousands separator
-function humanizeNumber(n) {
-  n = n.toString()
-  while (true) {
-    var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
-    if (n == n2) break
-    n = n2
-  }
-  return n
-}
+Drupal.behaviors.sigExternalLinks = {
+  attach: function(context, settings) {
+    $('a', context).once('sig-external-links').each(function () {
+      if (Drupal.behaviors.sigExternalLinks.linkIsExternal(this)) {
+        $(this).attr('target', '_blank');
+      }
+    });
+  },
+  linkIsExternal: function(link_element) {
+    return (link_element.host !== window.location.host);
+  },
+};
 
 // Calculate element visibility in viewport
 function percentageSeen ($element) {

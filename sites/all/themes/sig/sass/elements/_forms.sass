@@ -34,12 +34,14 @@ textarea
     color: #fff
     display: inline-block
     line-height: 30px
-    padding: 0 47px
+    padding: 0 60px
     background: $KolorMain
     display: inlineblock
     border: none
     position: relative
     z-index: 1
+    &::before
+      content: "> "
     &:hover
       background-color: $Kolor1
 .select-wrapper
