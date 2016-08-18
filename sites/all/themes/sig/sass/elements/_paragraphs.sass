@@ -72,7 +72,12 @@
     height: 100% !important
     left: 0
     top: 0
-
+  iframe
+    width: 88% !important
+    position: absolute
+    height: 100% !important
+    left: 6%
+    top: 0
 // SLOGAN
 .entity-paragraphs-item.paragraphs-item-slogan-block
   @include paragraph-reset
@@ -183,7 +188,35 @@
   .field-name-field-link
     text-align: center
     .field-item
-      @include link-style
+      display: inline-block
+      position: relative
+      padding: 0
+      margin: 0
+      overflow: hidden
+      z-index: 1
+      @include link-style-with-span
+      a
+        line-height: 20px
+        padding: 5px 47px
+        &:before
+          content: "> "
+          display: inline-block
+          margin-right: 4px
+      span.spanL,
+      span.spanR
+        display: block
+        position: absolute
+        z-index: 10
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        pointer-events: none
+      span.spanL
+        background: transparent url('i/slantL.png') no-repeat left bottom
+      span.spanR
+        background: transparent url('i/slantR.png') no-repeat right top
+
 
 // paragraphs-item-case-download-link
 .paragraphs-item-case-download-link
@@ -350,32 +383,32 @@
 
 // SVG MAP
 .paragraphs-item-svg-map.ds-3col-equal
-  > .group-left 
+  > .group-left
     float: left
     width: 15%
-    h2 
+    h2
       line-height: 130%
     @include breakpoint($t)
       float: none
       width: 100%
       padding: 0 0 40px
-    @include breakpoint($m)  
+    @include breakpoint($m)
       float: none
       width: 100%
       padding: 0 0 40px
-  > .group-middle 
+  > .group-middle
     width: 60%
-    float: left      
+    float: left
     padding-left: 40px
     +box-sizing(border-box)
     @include breakpoint($t)
       float: none
       width: 100%
-      padding: 0 0 40px    
+      padding: 0 0 40px
     @include breakpoint($m)
       float: none
       width: 100%
-      padding: 0 0 40px  
+      padding: 0 0 40px
   > .group-right
     color: $Kolor2
     text-align: center
@@ -389,18 +422,16 @@
       line-height: 32px
       float: none
       width: 100%
-      padding: 0 0 40px        
+      padding: 0 0 40px
     @include breakpoint($m)
       font-size: 14px
       line-height: 16px
       float: none
       width: 100%
-      padding: 0 0 40px        
+      padding: 0 0 40px
     p
       margin: 0
       &:before
         content: "\201E"
       &:after
         content: "\201C"
-
-

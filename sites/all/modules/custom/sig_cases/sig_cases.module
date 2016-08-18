@@ -68,9 +68,9 @@ function sig_download_case_form($form, &$form_state, $case) {
     );
     $form['sig']['submit'] = array(
       '#type' => 'submit',
-      '#value' => t('Submit'),
+      '#value' => t('> Submit'),
       '#prefix' => '<div class="form-actions"><div class="extra_div">',
-      '#suffix' => '</div></div>',
+      '#suffix' => '<span class="spanL"></span><span class="spanR"></span></div></div>',
     );
   }
 
@@ -100,7 +100,7 @@ function sig_download_case_form_submit($form, &$form_state) {
   $name = $form_state['values']['name'];
   $email = $form_state['values']['email'];
   if(_sig_case_save_email_entity($name, $email)) {
-    _sig_messages_mail_send($email);
+    //_sig_messages_case_mail_send($email, $name);
   }
 }
 

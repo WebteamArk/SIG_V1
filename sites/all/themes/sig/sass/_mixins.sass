@@ -61,7 +61,8 @@
       > .group-middle,
       > .group-right
         width: 100%
-        margin: 0
+        margin: 0 0 20px 0
+        margin: 0 0 5vw 0
         float: none
         +box-sizing(border-box)
         padding: 0 10%
@@ -71,7 +72,8 @@
       > .group-middle,
       > .group-right
         width: 100%
-        margin: 0
+        margin: 0 0 20px 0
+        margin: 0 0 5vw 0
         float: none
 @mixin mode-2cols
   &.ds-2col
@@ -129,46 +131,41 @@
       border-color: transparent transparent $Kolor1 transparent
     &::after
       border-color: $Kolor1 transparent transparent transparent
-@mixin wrapper-submit-button
-  .extra_div
+@mixin link-style-with-span
+  a
     text-decoration: none
     color: #fff
     display: inline-block
     line-height: 30px
-    padding: 0 0px
+    padding: 0 47px
     background: $KolorMain
     position: relative
-    z-index: 10
-    &::before
-      display: block
-      width: 0
-      height: 0
-      border-style: solid
-      border-width: 0 0 30px 15px
-      border-color: transparent transparent $KolorMain transparent
-      content: " "
-      position: absolute
-      left: -15px
-      top: 0
-      z-index: 10
-    &::after
-      display: block
-      width: 0
-      height: 0
-      border-style: solid
-      border-width: 30px 15px 0 0
-      border-color: $KolorMain transparent transparent transparent
-      content: " "
-      position: absolute
-      right: -15px
-      top: 0
-      z-index: 10
-  .extra_div:hover
+  a:hover
     background: $Kolor1
-    &::before
-      border-color: transparent transparent $Kolor1 transparent
-    &::after
-      border-color: $Kolor1 transparent transparent transparent
+
+
+@mixin wrapper-submit-button
+  .extra_div
+    display: inline-block
+    position: relative
+    padding: 0
+    margin: 0
+    overflow: hidden
+    z-index: 1
+    span.spanL,
+    span.spanR
+      display: block
+      position: absolute
+      z-index: 10
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      pointer-events: none
+    span.spanL
+      background: transparent url('i/slantL.png') no-repeat left bottom
+    span.spanR
+      background: transparent url('i/slantR.png') no-repeat right top
 
 
 @mixin paragraph-center

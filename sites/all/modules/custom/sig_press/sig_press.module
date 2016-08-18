@@ -7,23 +7,6 @@
 
 define('SIG_PRESS_XML_FETCH_URL', 'http://www.ark.be/nl/api/pressroomRss?client=sig%20air%20handling');
 define('SIG_PRESS_XML_FILENAME', 'sig.xml');
-//define('SIG_PRESS_JSON_FILENAME', 'sig.json');
-
-/**
- * Implements hook_menu().
- 
-function sig_press_menu() {
-  $items['pressroom_test'] = array(
-    'title' => 'Pressroom',
-    'page callback' => '_sig_press_page',
-    'access arguments' => array('access content'),
-    'type' => MENU_SUGGESTED_ITEM,
-    'file' => 'sig_press.pages.inc'
-  );
-  
-  return $items;
-}
-*/
 
 /**
  * Implements hook_block_info().
@@ -79,16 +62,6 @@ function _sig_press_list_articles() {
     }
     else {
       $html .= '<div class="press-list">';
-      foreach($array[$lang] as $index => $item) {
-        $html .= '<div class="press-row">';
-        $html .= _sig_press_prepare_item_teaser($item, $index);
-        $html .= '</div>';
-      }
-      foreach($array[$lang] as $index => $item) {
-        $html .= '<div class="press-row">';
-        $html .= _sig_press_prepare_item_teaser($item, $index);
-        $html .= '</div>';
-      }
       foreach($array[$lang] as $index => $item) {
         $html .= '<div class="press-row">';
         $html .= _sig_press_prepare_item_teaser($item, $index);

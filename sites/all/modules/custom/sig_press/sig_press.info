@@ -1,5 +1,4 @@
 name = Sig Press
-description = TODO: Description of module
+description = Sig pressroom
 package = Custom
 core = 7.x
-files[] = tests/sig_press.test

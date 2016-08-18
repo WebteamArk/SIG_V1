@@ -5,7 +5,11 @@
  * @author Jacek Szmit
  */
 
-define('SIG_MESSAGES_MAIL_KEY', 'sig_messages_mail_key');
+//define('SIG_MESSAGES_MAIL_KEY', 'sig_messages_mail_key');
+define('SIG_MESSAGES_ASK_US_MAIL_KEY', 'sig_messages_ask_us_mail_key');
+define('SIG_MESSAGES_CASE_MAIL_KEY', 'sig_messages_case_mail_key');
+define('SIG_MESSAGES_DOWNLOAD_MAIL_KEY', 'sig_messages_download_mail_key');
+define('SIG_MESSAGES_DOWNLOAD_AFTER_MAIL_KEY', 'sig_messages_download_after_mail_key');
 
 /**
  * Implements hook_menu().
@@ -34,15 +38,54 @@ function sig_messages_permission() {
   return $permissions;
 }
 
+/**
+ * Implements hook_theme().
+ */
+function sig_messages_theme($existing, $type, $theme, $path) {
+  return array(
+   'sig_ask_us_mail' => array(
+     'variables' => array('surname' => NULL),
+     'template' => 'sig-ask-us-mail',
+     'pattern' => 'sig_ask_us_mail_[a-z]+',
+   ),
+   'sig_case_mail' => array(
+     'variables' => array('surname' => NULL),
+     'template' => 'sig-case-mail',
+     'pattern' => 'sig_case_mail_[a-z]+',
+   ),
+   'sig_downloadcenter_mail' => array(
+     'variables' => array('surname' => NULL),
+     'template' => 'sig-downloadcenter-mail',
+     'pattern' => 'sig_downloadcenter_mail_[a-z]+',
+   ),
+   'sig_downloadcenter_after_mail' => array(
+     'variables' => array('surname' => NULL),
+     'template' => 'sig-downloadcenter-after-mail',
+     'pattern' => 'sig_downloadcenter_after_mail_[a-z]+',
+   ),
+  );
+}
 
 /**
  * Implements hook_mail().
  */
 function sig_messages_mail($key, &$message, $params) {
   switch ($key) {
-    case SIG_MESSAGES_MAIL_KEY:
-      $message['subject'] = variable_get_value('sig_messages_mail_subject');
-      $message['body'][] = variable_get_value('sig_messages_mail_body');
+    case SIG_MESSAGES_ASK_US_MAIL_KEY:
+      $message['subject'] = variable_get_value('sig_messages_ask_us_mail_subject');
+      $message['body'][]  = theme('sig_ask_us_mail', array($params['surname']));
+      break;
+    case SIG_MESSAGES_CASE_MAIL_KEY:
+      $message['subject'] = variable_get_value('sig_messages_case_mail_subject');
+      $message['body'][]  = theme('sig_case_mail', array($params['surname']));
+      break;
+    case SIG_MESSAGES_DOWNLOAD_MAIL_KEY:
+      $message['subject'] = variable_get_value('sig_messages_download_mail_subject');
+      $message['body'][]  = theme('sig_downloadcenter_mail', array($params['surname']));
+      break;
+    case SIG_MESSAGES_DOWNLOAD_AFTER_MAIL_KEY:
+      $message['subject'] = variable_get_value('sig_messages_download_after_mail_subject');
+      $message['body'][]  = theme('sig_downloadcenter_after_mail', array($params['surname']));
       break;
     default:
       break;
@@ -53,10 +96,55 @@ function sig_messages_mail($key, &$message, $params) {
  * Helper function to send email message
  * 
  * @param string $email
+ * @param string $key
+ * @param array  $params
  */
-function _sig_messages_mail_send($email) {
+function _sig_messages_mail_send($email, $key, $params = array()) {
   global $language;
   $module = 'sig_messages';
-  $params = array();
-  drupal_mail($module, SIG_MESSAGES_MAIL_KEY, $email, $language, $params);
+  drupal_mail($module, $key, $email, $language, $params);
+}
+
+/**
+ * Helper function to send case thank you email message
+ * 
+ * @param string $email
+ * @param string $surname
+ */
+function _sig_messages_case_mail_send($email, $surname) {
+  $params = array('surname' => $surname);
+  _sig_messages_mail_send($email, SIG_MESSAGES_CASE_MAIL_KEY, $params);
+}
+
+/**
+ * Helper function to send downloadcenter thank you email message
+ * 
+ * @param string $email
+ * @param string $surname
+ */
+function _sig_messages_download_mail_send($email, $surname) {
+  $params = array('surname' => $surname);
+  _sig_messages_mail_send($email, SIG_MESSAGES_DOWNLOAD_MAIL_KEY, $params);
+}
+
+/**
+ * Helper function to send downloadcenter after 7 days email message
+ * 
+ * @param string $email
+ * @param string $surname
+ */
+function _sig_messages_download_after_mail_send($email, $surname) {
+  $params = array('surname' => $surname);
+  _sig_messages_mail_send($email, SIG_MESSAGES_DOWNLOAD_AFTER_MAIL_KEY, $params);
+}
+
+/**
+ * Helper function to send ask us thank you email message
+ * 
+ * @param string $email
+ * @param string $surname
+ */
+function _sig_messages_ask_us_mail_send($email, $surname) {
+  $params = array('surname' => $surname);
+  _sig_messages_mail_send($email, SIG_MESSAGES_ASK_US_MAIL_KEY, $params);
 }
