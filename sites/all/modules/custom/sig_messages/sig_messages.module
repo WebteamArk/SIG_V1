@@ -62,6 +62,7 @@ function sig_messages_theme($existing, $type, $theme, $path) {
      'variables' => array('surname' => NULL),
      'template' => 'sig-downloadcenter-after-mail',
      'pattern' => 'sig_downloadcenter_after_mail_[a-z]+',
+     'path' => drupal_get_path('theme', 'sig') . '/mail_assets/downloadcenter1'
    ),
   );
 }
@@ -73,19 +74,19 @@ function sig_messages_mail($key, &$message, $params) {
   switch ($key) {
     case SIG_MESSAGES_ASK_US_MAIL_KEY:
       $message['subject'] = variable_get_value('sig_messages_ask_us_mail_subject');
-      $message['body'][]  = theme('sig_ask_us_mail', array($params['surname']));
+      $message['body'][]  = theme('sig_ask_us_mail', array('surname' => $params['surname']));
       break;
     case SIG_MESSAGES_CASE_MAIL_KEY:
       $message['subject'] = variable_get_value('sig_messages_case_mail_subject');
-      $message['body'][]  = theme('sig_case_mail', array($params['surname']));
+      $message['body'][]  = theme('sig_case_mail', array('surname' => $params['surname']));
       break;
     case SIG_MESSAGES_DOWNLOAD_MAIL_KEY:
       $message['subject'] = variable_get_value('sig_messages_download_mail_subject');
-      $message['body'][]  = theme('sig_downloadcenter_mail', array($params['surname']));
+      $message['body'][]  = theme('sig_downloadcenter_mail', array('surname' => $params['surname']));
       break;
     case SIG_MESSAGES_DOWNLOAD_AFTER_MAIL_KEY:
       $message['subject'] = variable_get_value('sig_messages_download_after_mail_subject');
-      $message['body'][]  = theme('sig_downloadcenter_after_mail', array($params['surname']));
+      $message['body'][]  = theme('sig_downloadcenter_after_mail', array('surname' => $params['surname']));
       break;
     default:
       break;

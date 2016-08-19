@@ -117,8 +117,8 @@ function _sig_case_save_email_entity($name, $email) {
   $email_collect_values = array(
     'type' => SIG_EMAIL_ENTITY,
     'title' => $email . ' ' . $name,
-    'field_ec_name' => $name,
-    'field_ec_email' => $email,
+    'field_ec_name' => array(LANGUAGE_NONE => array(0 => array('value' => $name))),
+    'field_ec_email' => array(LANGUAGE_NONE => array(0 => array('value' => $email))),
   );
   
   $email_collect = entity_create(SIG_EMAIL_ENTITY, $email_collect_values);
