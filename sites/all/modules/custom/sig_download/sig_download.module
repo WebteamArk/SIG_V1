@@ -7,6 +7,8 @@
 define('SIG_DOWNLOAD_COOKIE', 'sig_download_registered');
 define('SIG_DOWNLOAD_EMAIL_ENTITY', 'email_collect');
 define('SIG_DOWNLOAD_EMAIL_BUNDLE', 'email_collect_downloadcenter');
+define('SIG_DOWNLOAD_DATE_FORMAT', 'Y-m-d');
+define('SIG_DOWNLOAD_INTERVAL', 7);
 
 /**
  * Implements hook_block_info().
@@ -199,8 +201,9 @@ function sig_downloadcenter_email_form_submit($form, &$form_state) {
 //   $telephone = $form_state['values']['telephone'];
   $telephone = '--';
   $profile = $form_state['values']['profile'];
+  $country = $form_state['values']['country'];
   $email = $form_state['values']['email'];
-  if(_sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $email)) {
+  if(_sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $country, $email)) {
     _sig_messages_download_mail_send($email, $lastname);
   }
 }
@@ -291,21 +294,26 @@ function sig_downloadcenter_list_form_submit($form, &$form_state) {
  * @param string $email
  * @return boolean
  */
-function _sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $email) {
+function _sig_download_save_email_entity($company, $firstname, $lastname, $address, $telephone, $profile, $country, $email) {
   if(_sig_download_check_email_entity_exists($email)) {
     return false;
   }
-
+  
+  $date = new DateTime(date(SIG_DOWNLOAD_DATE_FORMAT));
+  
   $email_collect_values = array(
-      'type' => SIG_DOWNLOAD_EMAIL_BUNDLE,
-      'title' => $email . ' ' . $company,
-      'field_ecd_company_name' => $company,
-      'field_ecd_firstname' => $firstname,
-      'field_ecd_lastname' => $lastname,
-      'field_ecd_address' => $address,
-      'field_ecd_telephone' => $telephone,
-      'field_ecd_profile' => $profile,
-      'field_ecd_email' => $email,
+    'type' => SIG_DOWNLOAD_EMAIL_BUNDLE,
+    'title' => $email . ' ' . $company,
+    'field_ecd_company_name' => array(LANGUAGE_NONE => array(0 => array('value' => $company))),
+    'field_ecd_firstname' => array(LANGUAGE_NONE => array(0 => array('value' => $firstname))),
+    'field_ecd_lastname' => array(LANGUAGE_NONE => array(0 => array('value' => $lastname))),
+    'field_ecd_address' => array(LANGUAGE_NONE => array(0 => array('value' => $address))),
+    'field_ecd_telephone' => array(LANGUAGE_NONE => array(0 => array('value' => $telephone))),
+    'field_ecd_profile' => array(LANGUAGE_NONE => array(0 => array('value' => $profile))),
+    'field_ecd_country' => array(LANGUAGE_NONE => array(0 => array('value' => $country))),
+    'field_ecd_email' => array(LANGUAGE_NONE => array(0 => array('value' => $email))),
+    'field_ecd_date' => array(LANGUAGE_NONE => array(0 => array('value' => $date->format(SIG_DOWNLOAD_DATE_FORMAT)))),
+    'field_ecd_sent' => array(LANGUAGE_NONE => array(0 => array('value' => 0))),
   );
 
   $email_collect = entity_create(SIG_DOWNLOAD_EMAIL_ENTITY, $email_collect_values);
@@ -328,4 +336,70 @@ function _sig_download_check_email_entity_exists($email) {
   ->execute();
 
   return (!empty($entities[SIG_DOWNLOAD_EMAIL_ENTITY])) ? true : false;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function sig_download_cron() {
+  $recipients = _sig_download_get_recipients();
+  
+  foreach ($recipients as $recipient) {
+    _sig_messages_download_after_mail_send($recipient['email'], $recipient['surname']);
+    _sig_download_mark_as_sent($recipient['id']);
+  }
+}
+
+/**
+ * Helper function to get emails that should be sent.
+ * 
+ * @return array
+ */
+function _sig_download_get_recipients() {
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', SIG_DOWNLOAD_EMAIL_ENTITY)
+  ->propertyCondition('type', SIG_DOWNLOAD_EMAIL_BUNDLE)
+  ->fieldCondition('field_ecd_sent', 'value', 0, '=')
+  ->execute();
+  
+  $result = array();
+  
+  if(!empty($entities[SIG_DOWNLOAD_EMAIL_ENTITY])) {
+    $now = new DateTime(date(SIG_DOWNLOAD_DATE_FORMAT));
+    foreach ($entities[SIG_DOWNLOAD_EMAIL_ENTITY] as $id => $object) {
+      $entity = entity_load_single(SIG_DOWNLOAD_EMAIL_ENTITY, $id);
+      $date = DateTime::createFromFormat(SIG_DOWNLOAD_DATE_FORMAT, $entity->field_ecd_date[LANGUAGE_NONE][0]['value']);
+      $date->modify('+' . SIG_DOWNLOAD_INTERVAL . ' days');
+      if ($date <= $now) {
+        $result[] = array(
+          'id' => $id,
+          'email' => $entity->field_ecd_email[LANGUAGE_NONE][0]['value'],
+          'surname' => $entity->field_ecd_lastname[LANGUAGE_NONE][0]['value'],
+        );
+      }
+    }
+  }
+  
+  return $result;
+}
+
+/**
+ * Helper function to mark entity as sent
+ * 
+ * @param int $id
+ */
+function _sig_download_mark_as_sent($id) {
+  $entity = entity_load_single(SIG_DOWNLOAD_EMAIL_ENTITY, $id);
+  $entity->field_ecd_sent = array(LANGUAGE_NONE => array(0 => array('value' => 1)));
+  $entity->save();
+}
+
+/**
+ * Implements hook_webform_submission_presave().
+ */
+function sig_download_webform_submission_presave($node, &$submission) {
+  $email = $submission->data[8][0];
+  $surname = $submission->data[3][0];
+  //drupal_set_message(var_export($submission->data, true));
+  _sig_messages_ask_us_mail_send($email, $surname);
 }
