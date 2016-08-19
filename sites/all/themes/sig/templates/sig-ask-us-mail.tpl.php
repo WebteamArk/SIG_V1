@@ -2,19 +2,18 @@
 /**
  * variables:
  *  - $surname
- *      Lastname from downloadcenter signup form
+ *      Lastname from ask us form
  */
 global $base_url, $base_path;
-$assets_path = $base_url . $base_path . drupal_get_path ( 'theme', 'sig' ) . '/mail_assets/downloadcenter1/';
+$assets_path = $base_url . $base_path . drupal_get_path ( 'theme', 'sig' ) . '/mail_assets/askus/';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <!-- If you delete this tag, the sky will fall on your head -->
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Downloadcenter</title>
+<title>We will answer asap</title>
 
 <style type="text/css">
 /* ------------------------------------- 
@@ -60,10 +59,6 @@ span {
 
 .interimg {
 	margin: 40px 0;
-}
-
-.largespacing {
-	margin: 50px 0 0;
 }
 
 /* ------------------------------------- 
@@ -179,10 +174,10 @@ p {
 
 </head>
 
-<body bgcolor="#FFFFFF">
+<body bgcolor="#FFFFFF" width="100%">
 
 	<!-- BODY -->
-	<table class="body-wrap">
+	<table class="body-wrap" style="max-width: 100%;">
 		<tr>
 			<td></td>
 			<td class="container" bgcolor="#FFFFFF">
@@ -192,27 +187,24 @@ p {
 						<tr>
 							<td>
 								<p>
-									<img src="/<?php print $assets_path; ?>downloadcenter.jpg" alt="ask us" />
+									<img src="<?php print $assets_path; ?>askus.jpg" alt="ask us" />
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<p class="largespacing">
-									Dear Mr/Ms <?php print $surname; ?>
-									<br />
-									<br />You downloaded a brochure from our SIG Air Handling website a few days ago.
-									<br />We hope that you were able to find the information you were looking for.
-									<br />
-									<br />However, if you still have any questions, please don’t hesitate to <a href="#" target="_blank">contact us</a>.
-									<br />One of our employees will be happy to help you.
+								<h1>We will answer asap</h1>
+								<p>
+									Dear Mr/Ms <?php print $surname; ?><br />
+									<br /> We have received your question. Thank you.<br />You will	be contacted by one of our SIG Air Handling employees soon.<br />
+									<br /> Interested in more?<br />Please take a look at <a href="#" target="_blank">our cases</a>.
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<p class="interimg">
-									<a href="#" target="_blank"><img src="/<?php print $assets_path; ?>downloadcenter1.jpg" alt="view our cases" /></a>
+									<a href="#" target="_blank"><img src="<?php print $assets_path; ?>viewourcases.jpg" alt="view our cases" /></a>
 								</p>
 							</td>
 						</tr>
@@ -237,13 +229,12 @@ p {
 		<tr>
 			<td align="center">
 				<p class="footer">
-					&copy; 2016 SIG Air Handling. All rights reserved.
-					<br />Our mailing address is: <a href="mailto:info@sigairhandling.com">info@sigairhandling.com</a>.
+					&copy; 2016 SIG Air Handling. All rights reserved.<br />Our mailing
+					address is: <a href="mailto:info@sigairhandling.com">info@sigairhandling.com</a>.
 				</p>
 			</td>
 		</tr>
 	</table>
 	<!-- /FOOTER -->
-
 </body>
 </html>
