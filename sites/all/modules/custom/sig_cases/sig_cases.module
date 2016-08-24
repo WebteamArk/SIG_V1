@@ -34,11 +34,27 @@ function sig_download_case_form($form, &$form_state, $case) {
     return $form;
   }
   if (isset($_COOKIE[SIG_EMAIL_COOKIE])) {
-    $thanks = t('Thank you for your request, download will start automatically.');
+    $thanks = t('Thank you for your interest.<br>Your download should automatically begin in a few seconds. If not, click the link below.');
     $view = node_view($case, 'download');
     $file = render($view);
-    $form['case'] = array(
-      '#markup' => '<div class="sig-thanks">'. $thanks. '</div>' . $file,
+    $form['case_1'] = array(
+      '#markup' => '<div class="sig-thanks">'. $thanks. '</div>' . $file . '<br />',
+    );
+    $thanks2 = t('Would you like to learn more about our projects?<br>Please take a look at our cases.');
+    $form['case_2'] = array(
+      '#markup' => '<div class="sig-thanks">'. $thanks2. '</div>',
+    );
+    $cases_link = l('cases', t('cases'));
+    $form['case_3'] = array(
+      '#markup' => "<div typeof=\"\" about=\"\" class=\"entity entity-paragraphs-item paragraphs-item-link\">
+  <div class=\"content\">
+    <div class=\"field field-name-field-link field-type-link-field field-label-hidden\">
+    <div class=\"field-items\">
+          <div class=\"field-item even\">$cases_link<span class=\"spanL\"></span><span class=\"spanR\"></span></div>
+      </div>
+</div>
+  </div>
+</div>",
     );
     $form['#attached']['js'] = array(
       drupal_get_path('module', 'sig_cases') . '/sig_cases.js',
