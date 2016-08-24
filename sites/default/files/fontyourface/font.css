@@ -1,2 +1,2 @@
-#block-system-main-menu a { font-family: 'Open Sans'; font-style: normal; font-weight: 300; }
+#block-system-main-menu a, .ui-dialog.svg-map h2 { font-family: 'Open Sans'; font-style: normal; font-weight: 300; }
 body { font-family: 'Open Sans'; font-style: normal; font-weight: normal; }
