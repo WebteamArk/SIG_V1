@@ -148,9 +148,212 @@ Drupal.behaviors.sigCounterAnimation = {
 
 Drupal.behaviors.sigSvgMap = {
   attach: function(context, settings) {
+    var width = "320";
+    if ($(window).width() >=500) {
+      width = "500";
+    }
+    $('#austria', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#austria-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#austria-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#belgium', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#belgium-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#belgium-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#bulgaria', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#bulgaria-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#bulgaria-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#france', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#france-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#france-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#germany', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#germany-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#germany-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#hungary', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#hungary-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#hungary-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#netherlands', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#netherlands-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#netherlands-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
     $('#poland', context).once('sig-svg-map').each(function () {
       $(this).click(function() {
-        alert( "This is poland!" );
+        $('#poland-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#poland-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#romania', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#romania-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#romania-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#switserland', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#switzerland-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#switzerland-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#turkey', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#turkey-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#turkey-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    $('#england', context).once('sig-svg-map').each(function () {
+      $(this).click(function() {
+        $('#uk-dialog').dialog({
+          minWidth: width,
+          modal: true,
+          dialogClass: 'svg-map',
+          draggable: false,
+          resizable: false,
+          open: function() {
+            $('.ui-widget-overlay').bind('click',function() {
+              $('#uk-dialog').dialog('close');
+            });
+          },
+        });
+      });
+    });
+    
+    $('#netherlands-dialog .tabs-nav a', context).once('sig-svg-map').each(function () {
+      $(this).click(function (e) {
+        e.preventDefault();
+        $('#netherlands-dialog .tabs-nav a', context).removeClass('active');
+        $(this).addClass('active');
+        var tabClass = $(this).attr('data-map-tabs');
+        $('#netherlands-dialog .map-tab', context).removeClass('map-tab-active');
+        $('#netherlands-dialog .map-tab.' + tabClass, context).addClass('map-tab-active');
+        //return false;
       });
     });
   }
