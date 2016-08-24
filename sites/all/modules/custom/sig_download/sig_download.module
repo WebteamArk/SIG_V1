@@ -229,9 +229,9 @@ function sig_downloadcenter_list_form($form, &$form_state) {
     '#type' => 'container',
   );
   if(!empty($form_state['storage']['sig_selected_files'])) {
-    $thanks = t('Thank you for your request, download will start automatically.');
+    $thanks = t('Thank you for your interest.<br>Your download should automatically begin in a few seconds. If not, click the link below.');
     $form['sig']['thanks'] = array(
-      '#markup' => '<div class="sig-thanks">'. $thanks . '</div>'
+      '#markup' => '<div class="sig-thanks">'. $thanks . '</div><br />'
     );
     
     foreach ($form_state['storage']['sig_selected_files'] as $fid => $selected) {
@@ -246,6 +246,22 @@ function sig_downloadcenter_list_form($form, &$form_state) {
     }
     $form['#attached']['js'] = array(
       drupal_get_path('module', 'sig_download') . '/sig_download.js',
+    );
+    $thanks2 = t('Interested in more?<br>Please take a look at our other interesting brochures.');
+    $form['sig']['thanks2'] = array(
+        '#markup' => '<br /><div class="sig-thanks">'. $thanks2 . '</div>'
+    );
+    $downloadcenter_link = l('downloadcenter', t('downloadcenter'));
+    $form['sig']['thanks3'] = array(
+      '#markup' => "<br /><div typeof=\"\" about=\"\" class=\"entity entity-paragraphs-item paragraphs-item-link\">
+  <div class=\"content\">
+    <div class=\"field field-name-field-link field-type-link-field field-label-hidden\">
+    <div class=\"field-items\">
+          <div class=\"field-item even\">$downloadcenter_link<span class=\"spanL\"></span><span class=\"spanR\"></span></div>
+      </div>
+</div>
+  </div>
+</div>",
     );
     
     return $form;
