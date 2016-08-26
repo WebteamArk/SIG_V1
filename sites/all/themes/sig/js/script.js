@@ -12,43 +12,71 @@ Drupal.behaviors.sigMainMenu = {
       $(this).click(function () {
         $('#block-system-main-menu .responsive-menus-simple ul', context).toggleClass('npx-expanded');
         $('#block-system-main-menu', context).toggleClass('npx-expanded');
-        $('#header', context).toggleClass('npx-expanded');
+        var $header = $('#header', context);
+        if($header.hasClass('npx-expanded')) {
+          Drupal.behaviors.sigMainMenu.menuOff();
+          $('#header', context).removeClass('npx-expanded');
+        }
+        else {
+          Drupal.behaviors.sigMainMenu.menuOn();
+        }
+        $header.toggleClass('npx-expanded');
         $('body', context).toggleClass('npx-expanded');
       });
       $(this).hover(function () {
-        $('#block-system-main-menu .responsive-menus-simple ul', context).addClass('npx-expanded');
-        $('#block-system-main-menu', context).addClass('npx-expanded');
-        $('#header', context).addClass('npx-expanded');
-        $('body', context).addClass('npx-expanded');
+        var $header = $('#header', context);
+        if(!$header.hasClass('npx-expanded')) {
+          $('#block-system-main-menu .responsive-menus-simple ul', context).addClass('npx-expanded');
+          $('#block-system-main-menu', context).addClass('npx-expanded');
+          $('#header', context).addClass('npx-expanded');
+          $('body', context).addClass('npx-expanded');
+          Drupal.behaviors.sigMainMenu.menuOn();
+        }
       },
       function () {
-//        $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
-//        $('#block-system-main-menu', context).removeClass('npx-expanded');
-//        $('#header', context).removeClass('npx-expanded');
-//        $('body', context).removeClass('npx-expanded');
       });
     });
     $('#block-system-main-menu', context).once('sig-main-menu', function () {
       $(this).hover(function () {
       },
       function () {
-        if ($(window).width() > 1279) {
-          $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
-          $('#block-system-main-menu', context).removeClass('npx-expanded');
-          $('#header', context).removeClass('npx-expanded');
-          $('body', context).removeClass('npx-expanded');
-        }
+        Drupal.behaviors.sigMainMenu.menuOff();
+        $('#header', context).removeClass('npx-expanded');
       });
     });
     $('#block-system-main-menu .responsive-menus > span.toggler', context).once('sig-main-menu', function () {
       $(this).click(function () {
-        //$('#block-system-main-menu .responsive-menus-simple ul', context).toggleClass('npx-expanded');
-        //$('#block-system-main-menu', context).toggleClass('npx-expanded');
-        $('#header', context).toggleClass('npx-expanded');
-        //$('body', context).toggleClass('npx-expanded');
+        var $header = $('#header', context);
+        if($header.hasClass('npx-expanded')) {
+          Drupal.behaviors.sigMainMenu.mobileMenuOff();
+        }
+        else {
+          Drupal.behaviors.sigMainMenu.mobileMenuOn();
+        }
+        $header.toggleClass('npx-expanded');
       });
     });
-  }
+  },
+  menuOn: function() {
+    $('#header .responsive-menus > ul#rm-no-id ul').each(function () {
+      $(this).show({duration: 500, easing: 'swing'});
+    });
+  },
+  menuOff: function() {
+    $('#header .responsive-menus > ul#rm-no-id ul').each(function () {
+      $(this).hide({duration: 500, easing: 'swing'});
+    });
+  },
+  mobileMenuOn: function() {
+    $('#header .responsive-menus.responsified .responsive-menus-simple').each(function () {
+      $(this).show({duration: 800, easing: 'linear'});
+    });
+  },
+  mobileMenuOff: function() {
+    $('#header .responsive-menus.responsified .responsive-menus-simple').each(function () {
+      $(this).hide({duration: 800, easing: 'linear'});
+    });
+  },
 };
 
 Drupal.behaviors.sigFooterMenu = {
@@ -84,14 +112,14 @@ Drupal.behaviors.sigImagesOverlay = {
     $('div.image-overlay-outer', context).once('sig-images', function() {
       $(this).waypoint(function(event, direction) {
         var duration = 400;
-        var right = 0;
+        var right = '-30%';
         $bg = $(this).find('div.image-overlay');
         if(direction == 'up') {
-          right = '-30%';
+          right = 0;
         }
         $bg.animate({right: right}, duration);
       }, 
-      { offset: '40%', triggerOnce: false});
+      { offset: '50%', triggerOnce: false});
     });
   }
 };

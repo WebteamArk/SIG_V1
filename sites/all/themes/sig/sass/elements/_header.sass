@@ -6,16 +6,16 @@
   left: 0px
   width: 100%
   border-top: 10px solid #fff
-  z-index: 2
+  z-index: 10
 
   // +transition-property(all)
   // +transition-duration(1500ms)
   // +transition-timing-function(cubic-bezier(0, 1, 0.5, 1))
   @include breakpoint($t)
-    +transition-duration(5000ms)
+    +transition-duration(2000ms)
   @include breakpoint($m)
     min-height: 50px
-    +transition-duration(5000ms)
+    +transition-duration(2000ms)
   // &.npx-expanded
   // &:hover
   // &.npx-expanded
@@ -23,37 +23,37 @@
   //     height: 642px
   //   @include breakpoint($m)
   //     height: 642px
-
+  &.npx-expanded
+    background: rgba(0,0,0,0.85)
   &.npx-expanded .responsive-menus > ul#rm-no-id ul
-    height: 120px
+    // height: 120px
+
     transition: height 1000ms ease-out
     overflow: hidden
     width: auto
   &:not(.npx-expanded) .responsive-menus > ul#rm-no-id ul
-    height: 0px
+    //  height: 0px
     // width: 0px
     transition: height 1000ms ease-out
     overflow: hidden
-    // display: none
+
+  .responsive-menus.responsified
+    .responsive-menus-simple
+      display: none
 
   &:not(.npx-expanded)
     .responsive-menus.responsified
       .responsive-menus-simple
-        height: 0px
-        transition: height 1000ms ease-out
         overflow: hidden
-        display: block
         margin: 0
         padding: 0
   &.npx-expanded
     .responsive-menus.responsified
       .responsive-menus-simple
-        height: 771px
-        transition: height 1000ms ease-out
         overflow: hidden
-        display: block
         margin: 0
-        padding: 0
+        padding: 0 0 20px
+
   .front &
     background-color: #294754
     background-color: rgba(41,71,84,0.75)
@@ -111,16 +111,9 @@
         span
           line-height: 20px
           padding: 0 0 0 11px
+          padding: 0 30px 0 10px
           margin: 0 0 8px
-      &.npx-expanded
-        .responsive-menus
-          > ul#rm-no-id
-            margin: 16px 30px 19px 0
-    &.npx-expanded
-      .responsive-menus
-        > ul#rm-no-id
-          margin: 23px 30px 23px 0
-          margin: 16px 30px 23px 0
+
     @include breakpoint($m)
       .responsive-menus
         > ul#rm-no-id
@@ -156,30 +149,27 @@
       > li
         display: block
         float: left
-        margin-right: 10px
+        margin-right: 0px
         span
           font-family: 'Open Sans'
           font-weight: 700
           display: block
           color: #fff
-          padding: 0 0 0 11px
-          line-height: 20px
-          margin: 0 0 8px
           cursor: pointer
-          // span.s1
-          //   opacity: 1
-          // span.s2
-          //   display: none
+
       ul
         padding: 0
-        margin: 0
+        margin: 0 0 23px
         list-style-type: none
         list-style-image: none
+        display: none
         li
           position: relative
           overflow: hidden
           a
             display: block
+            max-width: 225px
+            &.active,
             &:hover
               font-weight: bold
             &::after
@@ -193,27 +183,6 @@
               margin: 0
               padding: 0
               margin-top: -1px
-        //   span.s1
-        //     opacity: 1
-        //     display: block
-        //   span.s2
-        //     opacity: 0
-        //     display: block
-        //     position: absolute
-        //     left: 0
-        //     top: 0
-        //     font-weight: bold
-        // li:hover
-        //   span.s1
-        //     opacity: 0
-        //   span.s2
-        //     opacity: 1
-
-
-        // &.npx-expanded
-        //   max-height: 500px
-        //   overflow: visible
-
     a
       color: #fff
       text-decoration: none
@@ -221,6 +190,7 @@
       padding: 0 0 0 11px
       line-height: 24px
       font-weight: 300
+    a.active,
     a:hover,
     a.is-active-trail
       font-family: 'Open Sans'
@@ -252,24 +222,52 @@
         box-shadow: none
         background: #000
         background: rgba(0,0,0,0.5)
+        background: rgba(0,0,0,0)
         clear: both
+        text-align: center
+        z-index: 499
         span.nolink
           display: block
           font-weight: bold
           color: #fff
-          padding: 5px 5px 5px 20px
-          border-bottom: rgba(255,255,255,0.1) 1px solid
+          padding: 60px 5px 20px 5px
+          // border-bottom: rgba(255,255,255,0.1) 1px solid
+          border-bottom: none
+          font-size: 40px
+          line-height: 48px
+          text-align: center
+          text-transform: uppercase
         a
-          display: block
+          display: inline-block
           text-decoration: none
-          border-bottom: rgba(255,255,255,0.1) 1px solid
+          // border-bottom: rgba(255,255,255,0.1) 1px solid
           line-height: 200%
-          padding: 5px 5px 5px 20px
+          padding: 7px 25px
           background-position: 5px center
-.front #header .responsive-menus.responsified .responsive-menus-simple
-  background-color: #294754
-  background-color: rgba(41,71,84,0.75)
+          text-align: center
+          border-bottom: none
+          line-height: 120%
+          font-size: 20px
+          line-height: 25px
+        a:hover,
+        a.active
+          background: transparent url('i/menu-pointer.png') no-repeat left center
+          font-weight: 700
+
+.front
+  #header
+    +transition-duration(4000ms)
+  #header.npx-expanded
+    background-color: rgba(41,71,84,0.85)
 
 .responsive-menus.responsified .responsive-menus-simple
   display: block
   padding: 0
+
+#header.npx-expanded-aaa #block-system-main-menu .responsive-menus > ul#rm-no-id span
+  padding: 0 67px 0 5px
+
+#header #block-system-main-menu .responsive-menus > ul#rm-no-id span
+  +transition-duration(1000ms)
+#header:hover #block-system-main-menu .responsive-menus > ul#rm-no-id span
+  padding: 0 67px 0 5px
