@@ -132,8 +132,8 @@ function _sig_press_prepare_item_teaser($item, $index) {
   $read_more = sprintf('<a href="%s">%s</a>', $url, $read_more_text);
   
   $html = '<div class="press-item">';
+  $html .= sprintf('<div class="press-title"><h2 class="eqhy"><a href="%s">%s</a></h2></div>', $url, $item['title']);
   $html .= sprintf('<div class="press-image"><img src="%s" /></div>', $item['image']);
-  $html .= sprintf('<div class="press-title"><h2><a href="%s">%s</a></h2></div>', $url, $item['title']);
   $html .= sprintf('<div class="press-body">%s%s</div>', $body, $read_more);
   $html .= sprintf('<div class="press-date">%s</div>', $item['date']);
 
