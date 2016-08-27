@@ -8,74 +8,58 @@
 
 Drupal.behaviors.sigMainMenu = {
   attach: function(context, settings) {
-    $('#block-system-main-menu .responsive-menus-simple .npx-menu-toggle > span', context).once('sig-main-menu', function () {
-      $(this).click(function () {
-        $('#block-system-main-menu .responsive-menus-simple ul', context).toggleClass('npx-expanded');
-        $('#block-system-main-menu', context).toggleClass('npx-expanded');
-        var $header = $('#header', context);
-        if($header.hasClass('npx-expanded')) {
-          Drupal.behaviors.sigMainMenu.menuOff();
-          $('#header', context).removeClass('npx-expanded');
-        }
-        else {
-          Drupal.behaviors.sigMainMenu.menuOn();
-        }
-        $header.toggleClass('npx-expanded');
-        $('body', context).toggleClass('npx-expanded');
-      });
+    $('#block-system-main-menu', context).once('sig-main-menu', function () {
       $(this).hover(function () {
         var $header = $('#header', context);
         if(!$header.hasClass('npx-expanded')) {
-          $('#block-system-main-menu .responsive-menus-simple ul', context).addClass('npx-expanded');
-          $('#block-system-main-menu', context).addClass('npx-expanded');
-          $('#header', context).addClass('npx-expanded');
-          $('body', context).addClass('npx-expanded');
-          Drupal.behaviors.sigMainMenu.menuOn();
+          if($(window).width() > 1229) {
+            $('#header', context).addClass('npx-expanded');
+            Drupal.behaviors.sigMainMenu.menuOn();
+          }
         }
       },
       function () {
+        if($(window).width() > 1229) {
+          Drupal.behaviors.sigMainMenu.menuOff();
+          $('#header', context).removeClass('npx-expanded');
+        }
       });
     });
-    $('#block-system-main-menu', context).once('sig-main-menu', function () {
-      $(this).hover(function () {
-      },
-      function () {
-        Drupal.behaviors.sigMainMenu.menuOff();
-        $('#header', context).removeClass('npx-expanded');
-      });
-    });
-    $('#block-system-main-menu .responsive-menus > span.toggler', context).once('sig-main-menu', function () {
+    $('#header #block-system-main-menu .hamburger span', context).once('sig-main-menu', function () {
       $(this).click(function () {
         var $header = $('#header', context);
         if($header.hasClass('npx-expanded')) {
-          Drupal.behaviors.sigMainMenu.mobileMenuOff();
+          Drupal.behaviors.sigMainMenu.menuOff();
         }
         else {
-          Drupal.behaviors.sigMainMenu.mobileMenuOn();
+          Drupal.behaviors.sigMainMenu.menuOn();
         }
         $header.toggleClass('npx-expanded');
       });
     });
+    $('#header', context).once('sig-main-menu', function () {
+      if($(window).width() > 1229 && $(this).hasClass('npx-expanded')) {
+        var height = $('#block-system-main-menu').height() + 10;
+        $(this).css('height', height);
+      }
+      else {
+        $(this).css('height', 64);
+      }
+    });
   },
   menuOn: function() {
-    $('#header .responsive-menus > ul#rm-no-id ul').each(function () {
-      $(this).show({duration: 500, easing: 'swing'});
-    });
+    var $header = $('#header');
+    var height = $('#block-system-main-menu').height() + 10;
+    //$header.css('height', height);
+    if($(window).width() > 1229) {
+      $header.attr('style', 'height: ' + height + 'px !important;');
+    } else {
+      $header.css('height', height);
+    }
   },
   menuOff: function() {
-    $('#header .responsive-menus > ul#rm-no-id ul').each(function () {
-      $(this).hide({duration: 500, easing: 'swing'});
-    });
-  },
-  mobileMenuOn: function() {
-    $('#header .responsive-menus.responsified .responsive-menus-simple').each(function () {
-      $(this).show({duration: 800, easing: 'linear'});
-    });
-  },
-  mobileMenuOff: function() {
-    $('#header .responsive-menus.responsified .responsive-menus-simple').each(function () {
-      $(this).hide({duration: 800, easing: 'linear'});
-    });
+    var $header = $('#header');
+    $header.removeAttr('style');
   },
 };
 
@@ -432,6 +416,14 @@ $(window).scroll(function () {
     }
     $bg.css('width', percentage + '%');
   });
+});
+
+$(window).resize(function () {
+  var $header = $('#header');
+  if($(window).width() > 1229 && $header.hasClass('npx-expanded')) {
+    $header.removeClass('npx-expanded');
+    $header.removeAttr('style');
+  }
 });
 
 })(jQuery, Drupal, this, this.document);
