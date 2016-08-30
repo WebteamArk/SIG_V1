@@ -1,14 +1,16 @@
 #footer
-  padding: 95px 0 100px
+  position: relative
   background: #ebedee
   color: #b2b2b2
-  margin: 100px 0 0 0
-  @include breakpoint($t)
-    padding: 85px 0 90px
-    margin: 90px 0 0 0
-  @include breakpoint($m)
-    padding: 45px 0 50px
-    margin: 50px 0 0 0
+  // padding: 95px 0 100px
+  // margin: 100px 0 0 0
+  // @include breakpoint($t)
+  //   padding: 85px 0 90px
+  //   margin: 90px 0 0 0
+  // @include breakpoint($m)
+  //   padding: 45px 0 50px
+  //   margin: 50px 0 0 0
+
   a
     color: #b2b2b2
     text-decoration: none
@@ -17,6 +19,11 @@
   #block-menu-menu-footer-menu
     max-width: 1280px
     margin: 0 auto
+    padding: 95px 0 100px
+    @include breakpoint($t)
+      padding: 85px 0 90px
+    @include breakpoint($m)
+      padding: 45px 0 50px
     ul
       padding: 0
       margin: 0
@@ -66,7 +73,7 @@
             span + ul.menu
               display: block
             span.npx-expanded + ul.menu
-            display: block
+              display: block
       li.column.social
         ul
           display: block

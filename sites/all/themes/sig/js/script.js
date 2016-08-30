@@ -43,7 +43,12 @@ Drupal.behaviors.sigMainMenu = {
         $(this).css('height', height);
       }
       else {
-        $(this).css('height', 64);
+        if($(window).width() < 760) {
+          $(this).css('height', 60);
+        }
+        else {
+          $(this).css('height', 64);
+        }
       }
     });
   },
@@ -51,7 +56,8 @@ Drupal.behaviors.sigMainMenu = {
     var $header = $('#header');
     var height = $('#block-system-main-menu').height() + 10;
     //$header.css('height', height);
-    if($(window).width() > 1229) {
+    var viewport = getViewport();
+    if(viewport.width > 1229) {
       $header.attr('style', 'height: ' + height + 'px !important;');
     } else {
       $header.css('height', height);
@@ -384,6 +390,27 @@ Drupal.behaviors.sigExternalLinks = {
   },
 };
 
+Drupal.behaviors.sigFooterToBottom = {
+  attach: function(context, settings) {
+    $('#footer', context).once('sig-footer-to-bottom', function () {
+      var height = $(this).height();
+      $(this).css('height', height);
+      $('#page', context).css('margin-bottom', -height);
+      var viewport = getViewport();
+      var addHeight = 50;
+      if(viewport.height >= 768) {
+        addHeight = 90;
+      }
+      if(viewport.height >= 1280) {
+        addHeight = 100;
+      }
+      $('#page', context).find('.fbdm').each( function () {
+        $(this).css('height', height + addHeight);
+      });
+    });
+  },
+};
+
 // Calculate element visibility in viewport
 function percentageSeen ($element) {
   var viewportHeight = $(window).height(),
@@ -403,6 +430,15 @@ function percentageSeen ($element) {
   }
 }
 
+function getViewport() {
+  var e = window, a = 'inner';
+  if (!('innerWidth' in window )) {
+      a = 'client';
+      e = document.documentElement || document.body;
+  }
+  return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+}
+
 $(window).scroll(function () {
   var maxWidth = "50";
   if ($(window).width() <=768) {
@@ -419,11 +455,29 @@ $(window).scroll(function () {
 });
 
 $(window).resize(function () {
+  var viewport = getViewport();
   var $header = $('#header');
-  if($(window).width() > 1229 && $header.hasClass('npx-expanded')) {
+  if(viewport.width > 1229 && $header.hasClass('npx-expanded')) {
     $header.removeClass('npx-expanded');
     $header.removeAttr('style');
   }
+  
+  var $footer = $('#footer');
+  var height = $footer.height();
+  
+  $footer.css('height', height);
+  $('#page').css('margin-bottom', -height);
+  var viewport = getViewport();
+  var addHeight = 50;
+  if(viewport.height >= 768) {
+    addHeight = 90;
+  }
+  if(viewport.height >= 1280) {
+    addHeight = 100;
+  }
+  $('#page').find('.fbdm').each( function () {
+    $(this).css('height', height + addHeight);
+  });
 });
 
 })(jQuery, Drupal, this, this.document);
