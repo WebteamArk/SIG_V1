@@ -8,47 +8,65 @@
 
 Drupal.behaviors.sigMainMenu = {
   attach: function(context, settings) {
-    $('#block-system-main-menu .responsive-menus-simple .npx-menu-toggle > span', context).once('sig-main-menu', function () {
-      $(this).click(function () {
-        $('#block-system-main-menu .responsive-menus-simple ul', context).toggleClass('npx-expanded');
-        $('#block-system-main-menu', context).toggleClass('npx-expanded');
-        $('#header', context).toggleClass('npx-expanded');
-        $('body', context).toggleClass('npx-expanded');
-      });
-      $(this).hover(function () {
-        $('#block-system-main-menu .responsive-menus-simple ul', context).addClass('npx-expanded');
-        $('#block-system-main-menu', context).addClass('npx-expanded');
-        $('#header', context).addClass('npx-expanded');
-        $('body', context).addClass('npx-expanded');
-      },
-      function () {
-//        $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
-//        $('#block-system-main-menu', context).removeClass('npx-expanded');
-//        $('#header', context).removeClass('npx-expanded');
-//        $('body', context).removeClass('npx-expanded');
-      });
-    });
     $('#block-system-main-menu', context).once('sig-main-menu', function () {
       $(this).hover(function () {
+        var $header = $('#header', context);
+        if(!$header.hasClass('npx-expanded')) {
+          if($(window).width() > 1229) {
+            $('#header', context).addClass('npx-expanded');
+            Drupal.behaviors.sigMainMenu.menuOn();
+          }
+        }
       },
       function () {
-        if ($(window).width() > 1279) {
-          $('#block-system-main-menu .responsive-menus-simple ul', context).removeClass('npx-expanded');
-          $('#block-system-main-menu', context).removeClass('npx-expanded');
+        if($(window).width() > 1229) {
+          Drupal.behaviors.sigMainMenu.menuOff();
           $('#header', context).removeClass('npx-expanded');
-          $('body', context).removeClass('npx-expanded');
         }
       });
     });
-    $('#block-system-main-menu .responsive-menus > span.toggler', context).once('sig-main-menu', function () {
+    $('#header #block-system-main-menu .hamburger span', context).once('sig-main-menu', function () {
       $(this).click(function () {
-        //$('#block-system-main-menu .responsive-menus-simple ul', context).toggleClass('npx-expanded');
-        //$('#block-system-main-menu', context).toggleClass('npx-expanded');
-        $('#header', context).toggleClass('npx-expanded');
-        //$('body', context).toggleClass('npx-expanded');
+        var $header = $('#header', context);
+        if($header.hasClass('npx-expanded')) {
+          Drupal.behaviors.sigMainMenu.menuOff();
+        }
+        else {
+          Drupal.behaviors.sigMainMenu.menuOn();
+        }
+        $header.toggleClass('npx-expanded');
       });
     });
-  }
+    $('#header', context).once('sig-main-menu', function () {
+      if($(window).width() > 1229 && $(this).hasClass('npx-expanded')) {
+        var height = $('#block-system-main-menu').height() + 10;
+        $(this).css('height', height);
+      }
+      else {
+        if($(window).width() < 760) {
+          $(this).css('height', 60);
+        }
+        else {
+          $(this).css('height', 64);
+        }
+      }
+    });
+  },
+  menuOn: function() {
+    var $header = $('#header');
+    var height = $('#block-system-main-menu').height() + 10;
+    //$header.css('height', height);
+    var viewport = getViewport();
+    if(viewport.width > 1229) {
+      $header.attr('style', 'height: ' + height + 'px !important;');
+    } else {
+      $header.css('height', height);
+    }
+  },
+  menuOff: function() {
+    var $header = $('#header');
+    $header.removeAttr('style');
+  },
 };
 
 Drupal.behaviors.sigFooterMenu = {
@@ -84,14 +102,14 @@ Drupal.behaviors.sigImagesOverlay = {
     $('div.image-overlay-outer', context).once('sig-images', function() {
       $(this).waypoint(function(event, direction) {
         var duration = 400;
-        var right = 0;
+        var right = '-30%';
         $bg = $(this).find('div.image-overlay');
         if(direction == 'up') {
-          right = '-30%';
+          right = 0;
         }
         $bg.animate({right: right}, duration);
       }, 
-      { offset: '40%', triggerOnce: false});
+      { offset: '50%', triggerOnce: false});
     });
   }
 };
@@ -372,6 +390,27 @@ Drupal.behaviors.sigExternalLinks = {
   },
 };
 
+Drupal.behaviors.sigFooterToBottom = {
+  attach: function(context, settings) {
+    $('#footer', context).once('sig-footer-to-bottom', function () {
+      var height = $(this).height();
+      $(this).css('height', height);
+      $('#page', context).css('margin-bottom', -height);
+      var viewport = getViewport();
+      var addHeight = 50;
+      if(viewport.height >= 768) {
+        addHeight = 90;
+      }
+      if(viewport.height >= 1280) {
+        addHeight = 100;
+      }
+      $('#page', context).find('.fbdm').each( function () {
+        $(this).css('height', height + addHeight);
+      });
+    });
+  },
+};
+
 // Calculate element visibility in viewport
 function percentageSeen ($element) {
   var viewportHeight = $(window).height(),
@@ -391,6 +430,15 @@ function percentageSeen ($element) {
   }
 }
 
+function getViewport() {
+  var e = window, a = 'inner';
+  if (!('innerWidth' in window )) {
+      a = 'client';
+      e = document.documentElement || document.body;
+  }
+  return { width : e[ a+'Width' ] , height : e[ a+'Height' ] };
+}
+
 $(window).scroll(function () {
   var maxWidth = "50";
   if ($(window).width() <=768) {
@@ -403,6 +451,32 @@ $(window).scroll(function () {
       percentage = maxWidth;
     }
     $bg.css('width', percentage + '%');
+  });
+});
+
+$(window).resize(function () {
+  var viewport = getViewport();
+  var $header = $('#header');
+  if(viewport.width > 1229 && $header.hasClass('npx-expanded')) {
+    $header.removeClass('npx-expanded');
+    $header.removeAttr('style');
+  }
+  
+  var $footer = $('#footer');
+  var height = $footer.height();
+  
+  $footer.css('height', height);
+  $('#page').css('margin-bottom', -height);
+  var viewport = getViewport();
+  var addHeight = 50;
+  if(viewport.height >= 768) {
+    addHeight = 90;
+  }
+  if(viewport.height >= 1280) {
+    addHeight = 100;
+  }
+  $('#page').find('.fbdm').each( function () {
+    $(this).css('height', height + addHeight);
   });
 });
 
