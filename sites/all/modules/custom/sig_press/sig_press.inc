@@ -41,7 +41,7 @@ function _sig_press_process_xml() {
           'date' => $pressItem['rss:Datum'],
           'title' => $pressItem['rss:Titel'],
           'body' => $pressItem['rss:Beschrijving'],
-          'image' => $pressItem['rss:Foto'],
+          'image' => !empty($pressItem['rss:Foto']) ? $pressItem['rss:Foto'] : '',
           'attachments' => array(),
       );
 
