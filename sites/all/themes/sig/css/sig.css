@@ -700,6 +700,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   /* line 59, ../sass/elements/_header.sass */
   #header #block-system-main-menu {
     margin: 0;
+<<<<<<< HEAD
     margin-right: 15px;
     float: right;
   }
@@ -785,6 +786,92 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     margin-bottom: 30px;
   }
   /* line 117, ../sass/elements/_header.sass */
+=======
+    float: right;
+  }
+  /* line 62, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .hamburger {
+    display: none;
+  }
+  /* line 64, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    list-style-image: none;
+    visibility: visible;
+    text-transform: uppercase;
+  }
+  /* line 71, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+  }
+  /* line 73, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu li {
+    padding: 0;
+    margin: 0 0 0 0;
+    list-style-type: none;
+    list-style-image: none;
+    display: block;
+  }
+  /* line 79, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu > li {
+    display: block;
+    float: left;
+    margin-right: 0px;
+  }
+  /* line 83, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu > li span {
+    font-family: "Open Sans";
+    font-weight: 700;
+    display: block;
+    color: #fff;
+    cursor: pointer;
+  }
+  /* line 89, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    list-style-image: none;
+  }
+  /* line 94, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul li {
+    position: relative;
+    overflow: hidden;
+  }
+  /* line 97, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul li a {
+    display: block;
+    max-width: 225px;
+  }
+  /* line 100, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul li a.active, #header #block-system-main-menu .block-content > ul.menu ul li a:hover {
+    font-weight: bold;
+  }
+  /* line 103, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul li a::after {
+    display: block;
+    content: attr(data-title);
+    font-weight: bold;
+    height: 1px;
+    color: transparent;
+    overflow: hidden;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    margin-top: -1px;
+  }
+  /* line 114, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .block-content > ul.menu ul li.last {
+    margin-bottom: 30px;
+  }
+  /* line 116, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu a {
     color: #fff;
     text-decoration: none;
@@ -793,7 +880,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     line-height: 24px;
     font-weight: 300;
   }
+<<<<<<< HEAD
   /* line 124, ../sass/elements/_header.sass */
+=======
+  /* line 123, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu a.active,
   #header #block-system-main-menu a:hover,
   #header #block-system-main-menu a.is-active-trail {
@@ -801,7 +892,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     background: transparent url("i/menu-pointer.png") no-repeat left center;
   }
 
+<<<<<<< HEAD
   /* line 129, ../sass/elements/_header.sass */
+=======
+  /* line 128, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu .block-content > ul.menu > li span {
     padding: 0 54px 0 11px;
     line-height: 54px;
@@ -812,27 +907,47 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     transition: all 800ms ease-in-out;
   }
 
+<<<<<<< HEAD
   /* line 134, ../sass/elements/_header.sass */
+=======
+  /* line 133, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu:hover .block-content > ul.menu > li span {
     padding: 0 67px 0 11px;
   }
 }
 @media all and (min-width: 1px) and (max-width: 1229px) {
+<<<<<<< HEAD
   /* line 140, ../sass/elements/_header.sass */
   #header .div.contextual-links-wrapper {
     display: none;
   }
   /* line 142, ../sass/elements/_header.sass */
+=======
+  /* line 139, ../sass/elements/_header.sass */
+  #header .div.contextual-links-wrapper {
+    display: none;
+  }
+  /* line 141, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu {
     margin: 0;
     float: none;
     clear: both;
   }
+<<<<<<< HEAD
   /* line 146, ../sass/elements/_header.sass */
   #header #block-system-main-menu .hamburger {
     display: block;
   }
   /* line 148, ../sass/elements/_header.sass */
+=======
+  /* line 145, ../sass/elements/_header.sass */
+  #header #block-system-main-menu .hamburger {
+    display: block;
+  }
+  /* line 147, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu .hamburger:after {
     clear: both;
     content: ".";
@@ -840,7 +955,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     height: 0;
     visibility: hidden;
   }
+<<<<<<< HEAD
   /* line 150, ../sass/elements/_header.sass */
+=======
+  /* line 149, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu .hamburger span {
     background: transparent url("i/menu-toggle.png") no-repeat 0 0;
     border-radius: 0;
@@ -859,16 +978,28 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     border: none;
     float: right;
   }
+<<<<<<< HEAD
   /* line 168, ../sass/elements/_header.sass */
+=======
+  /* line 167, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu ul {
     margin: 0;
     padding: 0 0 50px;
   }
+<<<<<<< HEAD
   /* line 171, ../sass/elements/_header.sass */
   #header #block-system-main-menu ul ul {
     padding: 0;
   }
   /* line 173, ../sass/elements/_header.sass */
+=======
+  /* line 170, ../sass/elements/_header.sass */
+  #header #block-system-main-menu ul ul {
+    padding: 0;
+  }
+  /* line 172, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu ul li {
     text-align: center;
     padding: 0;
@@ -876,7 +1007,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     list-style-type: none;
     list-style-image: none;
   }
+<<<<<<< HEAD
   /* line 179, ../sass/elements/_header.sass */
+=======
+  /* line 178, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu span.nolink {
     display: block;
     font-weight: bold;
@@ -888,7 +1023,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     text-align: center;
     text-transform: uppercase;
   }
+<<<<<<< HEAD
   /* line 189, ../sass/elements/_header.sass */
+=======
+  /* line 188, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu a {
     color: #fff;
     display: inline-block;
@@ -903,7 +1042,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     line-height: 25px;
     text-transform: uppercase;
   }
+<<<<<<< HEAD
   /* line 202, ../sass/elements/_header.sass */
+=======
+  /* line 201, ../sass/elements/_header.sass */
+>>>>>>> master
   #header #block-system-main-menu a:hover,
   #header #block-system-main-menu a.active {
     background: transparent url("i/menu-pointer.png") no-repeat left center;
@@ -911,7 +1054,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media all and (min-width: 1230px) {
+<<<<<<< HEAD
   /* line 217, ../sass/elements/_header.sass */
+=======
+  /* line 216, ../sass/elements/_header.sass */
+>>>>>>> master
   #header {
     -moz-transition: all 800ms ease-in-out;
     -o-transition: all 800ms ease-in-out;
@@ -922,7 +1069,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media all and (min-width: 1px) and (max-width: 1229px) {
+<<<<<<< HEAD
   /* line 217, ../sass/elements/_header.sass */
+=======
+  /* line 216, ../sass/elements/_header.sass */
+>>>>>>> master
   #header {
     height: 60px;
     min-height: 60px;
@@ -2707,37 +2858,41 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 /* line 126, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item {
-  width: 25%;
+#block-sig-press-sig-pressroom .press-list .press-row {
+  width: 33%;
   float: left;
-  padding: 0 10px 40px;
+  padding: 0 2% 70px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
   /* line 126, ../sass/elements/_blocks.sass */
-  #block-sig-press-sig-pressroom .press-list .press-item {
+  #block-sig-press-sig-pressroom .press-list .press-row {
     width: 50%;
     float: left;
-    padding: 0 15px 40px;
+    padding: 0 15px 50px;
   }
 }
 @media (max-width: 767px) {
   /* line 126, ../sass/elements/_blocks.sass */
-  #block-sig-press-sig-pressroom .press-list .press-item {
+  #block-sig-press-sig-pressroom .press-list .press-row {
     width: 100%;
     float: none;
     padding: 0 0px 40px;
   }
 }
 /* line 139, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item a {
-  text-decoration: none;
+#block-sig-press-sig-pressroom .press-list .press-item {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-/* line 142, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item a:hover, #block-sig-press-sig-pressroom .press-list .press-item a:active {
-  text-decoration: none;
+@media (max-width: 767px) {
+  /* line 142, ../sass/elements/_blocks.sass */
+  #block-sig-press-sig-pressroom .press-list .press-item:hover, #block-sig-press-sig-pressroom .press-list .press-item:active {
+    text-decoration: none;
+  }
 }
 /* line 144, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-image {
@@ -2749,13 +2904,14 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
 }
 /* line 149, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2 {
+  font-size: 20px;
   line-height: 120%;
   margin: 0 0 25px;
-  text-decoration: none;
 }
 /* line 153, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2 a {
   color: #000;
+  text-decoration: none;
 }
 /* line 156, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2:hover, #block-sig-press-sig-pressroom .press-list .press-item .press-title h2:active {
@@ -2774,16 +2930,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   text-decoration: none;
   font-weight: 700;
 }
-/* line 168, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-row:nth-child(2n+2) .press-image {
-  height: 25vw;
-  background: transparent url("http://cms.arkservice.be/CMS_pictures/ark2014/2016620151339893-sig-visual-small.jpg") no-repeat center top/cover;
+/* line 167, ../sass/elements/_blocks.sass */
+#block-sig-press-sig-pressroom .press-list .press-item .press-date {
+  text-align: right;
 }
-/* line 171, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-row:nth-child(2n+2) .press-image img {
-  display: none;
-}
-/* line 173, ../sass/elements/_blocks.sass */
+/* line 169, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full {
   margin-left: auto;
   margin-right: auto;
@@ -2791,39 +2942,39 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin-top: 70px;
 }
 @media (min-width: 1280px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 5%;
     padding-right: 5%;
   }
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 8%;
     padding-right: 8%;
   }
 }
 @media (max-width: 767px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 8%;
     padding-right: 8%;
   }
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     margin-top: 60px;
   }
 }
 @media (max-width: 767px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     margin-top: 40px;
   }
 }
-/* line 180, ../sass/elements/_blocks.sass */
+/* line 176, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-date,
 #block-sig-press-sig-pressroom .press-full .press-image,
 #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2833,7 +2984,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin: 0 25% 40px;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 180, ../sass/elements/_blocks.sass */
+  /* line 176, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-date,
   #block-sig-press-sig-pressroom .press-full .press-image,
   #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2844,7 +2995,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media (max-width: 767px) {
-  /* line 180, ../sass/elements/_blocks.sass */
+  /* line 176, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-date,
   #block-sig-press-sig-pressroom .press-full .press-image,
   #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2854,7 +3005,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     margin: 0 5%;
   }
 }
-/* line 191, ../sass/elements/_blocks.sass */
+/* line 187, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-title {
   border-bottom: 2px solid #294854;
   box-sizing: border-box;
@@ -2869,7 +3020,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin-top: 0;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 191, ../sass/elements/_blocks.sass */
+  /* line 187, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-title {
     margin-bottom: 30px;
     padding-bottom: 20px;
@@ -2877,18 +3028,18 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media (max-width: 767px) {
-  /* line 191, ../sass/elements/_blocks.sass */
+  /* line 187, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-title {
     margin-bottom: 20px;
     padding-bottom: 20px;
     margin-top: 0;
   }
 }
-/* line 211, ../sass/elements/_blocks.sass */
+/* line 207, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-date {
   font-weight: 700;
 }
-/* line 213, ../sass/elements/_blocks.sass */
+/* line 209, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-title {
   font-size: 22px;
   border-bottom: 2px solid #294854;
@@ -2898,12 +3049,12 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   padding: 0 0 10px;
   margin: 0 0 10px;
 }
-/* line 222, ../sass/elements/_blocks.sass */
+/* line 218, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-files a {
   display: block;
   margin: 0 0 10px;
 }
-/* line 225, ../sass/elements/_blocks.sass */
+/* line 221, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-files img {
   display: inline-block;
   width: 23%;
@@ -2911,13 +3062,13 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   vertical-align: top;
 }
 @media (max-width: 767px) {
-  /* line 225, ../sass/elements/_blocks.sass */
+  /* line 221, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .section-files img {
     width: 48%;
   }
 }
 
-/* line 238, ../sass/elements/_blocks.sass */
+/* line 234, ../sass/elements/_blocks.sass */
 .block.transition-01 svg * {
   transition: transform 0.2s ease-out;
 }
@@ -3725,6 +3876,13 @@ textarea {
 /* line 32, ../sass/elements/_pages.sass */
 #england:hover, #france:hover, #netherlands:hover, #belgium:hover, #switserland:hover, #poland:hover, #austria:hover, #hungary:hover, #romania:hover, #bulgaria:hover, #turkey:hover, #germany:hover {
   fill: #294754;
+}
+
+@media (max-width: 767px) {
+  /* line 37, ../sass/elements/_pages.sass */
+  .page-node-5 .paragraphs-item-block-i-t-b-x3 .field-type-text {
+    text-align: center;
+  }
 }
 
 @media (max-width: 767px) {
