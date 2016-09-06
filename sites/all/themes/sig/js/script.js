@@ -411,6 +411,19 @@ Drupal.behaviors.sigFooterToBottom = {
   },
 };
 
+Drupal.behaviors.sigAnimateAnchor = {
+  attach: function(context, settings) {
+    $('a.animate-anchor', context).once('sig-animate-anchor', function () {
+      $(this).click(function(){
+        $('html, body').animate({
+          scrollTop: $('[name="' + $.attr(this, 'href').substr(1) + '"]').offset().top
+        }, 500);
+        return false;
+      });
+    });
+  },
+};
+
 // Calculate element visibility in viewport
 function percentageSeen ($element) {
   var viewportHeight = $(window).height(),
