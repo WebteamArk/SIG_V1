@@ -123,22 +123,22 @@
   .press-list
     @include paragraph-center
     margin-top: 100px
-    .press-item
-      width: 25%
+    .press-row
+      width: 33%
       float: left
-      padding: 0 10px 40px
+      padding: 0 2% 70px
       +box-sizing(border-box)
       @include breakpoint($t)
         width: 50%
         float: left
-        padding: 0 15px 40px
+        padding: 0 15px 50px
       @include breakpoint($m)
         width: 100%
         float: none
         padding: 0 0px 40px
-      a
-        text-decoration: none
-        // cursor: url("http://slot9.dummysite.eu/_/pointer.ani"), auto
+    .press-item
+      +box-sizing(border-box)
+      @include breakpoint($m)
         &:hover, &:active
           text-decoration: none
       .press-image
@@ -147,12 +147,12 @@
           display: block
       .press-title
         h2
-          @mixin blockTitle
+          font-size: 20px
           line-height: 120%
           margin: 0 0 25px
           a
             color: #000
-          text-decoration: none
+            text-decoration: none
           &:hover, &:active
             text-decoration: none
       .press-body
@@ -164,12 +164,8 @@
           margin-left: 5px
           text-decoration: none
           font-weight: 700
-    .press-row:nth-child(2n+2)
-      .press-image
-        height: 25vw
-        background: transparent url('http://cms.arkservice.be/CMS_pictures/ark2014/2016620151339893-sig-visual-small.jpg') no-repeat center top / cover
-        img
-          display: none
+      .press-date
+        text-align: right
   .press-full
     @include paragraph-center
     margin-top: 70px
@@ -231,9 +227,9 @@
           width: 48%
 
 // #block-block-1
-//   svg * 
+//   svg *
 //     transition: transform 0.2s ease-out
-  // Transition for all the svg elemnts to slow down close to the end of the animation. 
+  // Transition for all the svg elemnts to slow down close to the end of the animation.
 .block.transition-01
-  svg * 
+  svg *
     transition: transform 0.2s ease-out

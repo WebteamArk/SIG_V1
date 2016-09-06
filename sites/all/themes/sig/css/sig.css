@@ -2706,37 +2706,41 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 /* line 126, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item {
-  width: 25%;
+#block-sig-press-sig-pressroom .press-list .press-row {
+  width: 33%;
   float: left;
-  padding: 0 10px 40px;
+  padding: 0 2% 70px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
   /* line 126, ../sass/elements/_blocks.sass */
-  #block-sig-press-sig-pressroom .press-list .press-item {
+  #block-sig-press-sig-pressroom .press-list .press-row {
     width: 50%;
     float: left;
-    padding: 0 15px 40px;
+    padding: 0 15px 50px;
   }
 }
 @media (max-width: 767px) {
   /* line 126, ../sass/elements/_blocks.sass */
-  #block-sig-press-sig-pressroom .press-list .press-item {
+  #block-sig-press-sig-pressroom .press-list .press-row {
     width: 100%;
     float: none;
     padding: 0 0px 40px;
   }
 }
 /* line 139, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item a {
-  text-decoration: none;
+#block-sig-press-sig-pressroom .press-list .press-item {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-/* line 142, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-item a:hover, #block-sig-press-sig-pressroom .press-list .press-item a:active {
-  text-decoration: none;
+@media (max-width: 767px) {
+  /* line 142, ../sass/elements/_blocks.sass */
+  #block-sig-press-sig-pressroom .press-list .press-item:hover, #block-sig-press-sig-pressroom .press-list .press-item:active {
+    text-decoration: none;
+  }
 }
 /* line 144, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-image {
@@ -2748,13 +2752,14 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
 }
 /* line 149, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2 {
+  font-size: 20px;
   line-height: 120%;
   margin: 0 0 25px;
-  text-decoration: none;
 }
 /* line 153, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2 a {
   color: #000;
+  text-decoration: none;
 }
 /* line 156, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-list .press-item .press-title h2:hover, #block-sig-press-sig-pressroom .press-list .press-item .press-title h2:active {
@@ -2773,16 +2778,11 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   text-decoration: none;
   font-weight: 700;
 }
-/* line 168, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-row:nth-child(2n+2) .press-image {
-  height: 25vw;
-  background: transparent url("http://cms.arkservice.be/CMS_pictures/ark2014/2016620151339893-sig-visual-small.jpg") no-repeat center top/cover;
+/* line 167, ../sass/elements/_blocks.sass */
+#block-sig-press-sig-pressroom .press-list .press-item .press-date {
+  text-align: right;
 }
-/* line 171, ../sass/elements/_blocks.sass */
-#block-sig-press-sig-pressroom .press-list .press-row:nth-child(2n+2) .press-image img {
-  display: none;
-}
-/* line 173, ../sass/elements/_blocks.sass */
+/* line 169, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full {
   margin-left: auto;
   margin-right: auto;
@@ -2790,39 +2790,39 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin-top: 70px;
 }
 @media (min-width: 1280px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 5%;
     padding-right: 5%;
   }
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 8%;
     padding-right: 8%;
   }
 }
 @media (max-width: 767px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     padding-left: 8%;
     padding-right: 8%;
   }
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     margin-top: 60px;
   }
 }
 @media (max-width: 767px) {
-  /* line 173, ../sass/elements/_blocks.sass */
+  /* line 169, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full {
     margin-top: 40px;
   }
 }
-/* line 180, ../sass/elements/_blocks.sass */
+/* line 176, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-date,
 #block-sig-press-sig-pressroom .press-full .press-image,
 #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2832,7 +2832,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin: 0 25% 40px;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 180, ../sass/elements/_blocks.sass */
+  /* line 176, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-date,
   #block-sig-press-sig-pressroom .press-full .press-image,
   #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2843,7 +2843,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media (max-width: 767px) {
-  /* line 180, ../sass/elements/_blocks.sass */
+  /* line 176, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-date,
   #block-sig-press-sig-pressroom .press-full .press-image,
   #block-sig-press-sig-pressroom .press-full .press-title,
@@ -2853,7 +2853,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
     margin: 0 5%;
   }
 }
-/* line 191, ../sass/elements/_blocks.sass */
+/* line 187, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-title {
   border-bottom: 2px solid #294854;
   box-sizing: border-box;
@@ -2868,7 +2868,7 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   margin-top: 0;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  /* line 191, ../sass/elements/_blocks.sass */
+  /* line 187, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-title {
     margin-bottom: 30px;
     padding-bottom: 20px;
@@ -2876,18 +2876,18 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   }
 }
 @media (max-width: 767px) {
-  /* line 191, ../sass/elements/_blocks.sass */
+  /* line 187, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .press-title {
     margin-bottom: 20px;
     padding-bottom: 20px;
     margin-top: 0;
   }
 }
-/* line 211, ../sass/elements/_blocks.sass */
+/* line 207, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .press-date {
   font-weight: 700;
 }
-/* line 213, ../sass/elements/_blocks.sass */
+/* line 209, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-title {
   font-size: 22px;
   border-bottom: 2px solid #294854;
@@ -2897,12 +2897,12 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   padding: 0 0 10px;
   margin: 0 0 10px;
 }
-/* line 222, ../sass/elements/_blocks.sass */
+/* line 218, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-files a {
   display: block;
   margin: 0 0 10px;
 }
-/* line 225, ../sass/elements/_blocks.sass */
+/* line 221, ../sass/elements/_blocks.sass */
 #block-sig-press-sig-pressroom .press-full .section-files img {
   display: inline-block;
   width: 23%;
@@ -2910,13 +2910,13 @@ body.page-node .ui-dialog.svg-map .ui-dialog-content .map-tab.map-tab-active {
   vertical-align: top;
 }
 @media (max-width: 767px) {
-  /* line 225, ../sass/elements/_blocks.sass */
+  /* line 221, ../sass/elements/_blocks.sass */
   #block-sig-press-sig-pressroom .press-full .section-files img {
     width: 48%;
   }
 }
 
-/* line 238, ../sass/elements/_blocks.sass */
+/* line 234, ../sass/elements/_blocks.sass */
 .block.transition-01 svg * {
   transition: transform 0.2s ease-out;
 }

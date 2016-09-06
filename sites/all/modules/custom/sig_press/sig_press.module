@@ -85,7 +85,9 @@ function _sig_press_list_articles() {
 function _sig_press_prepare_item_full($item) {
   $html = '<div class="press-item">';
   $html .= sprintf('<div class="press-date">%s</div>', substr($item['date'], 0, -8));
-  $html .= sprintf('<div class="press-image"><img src="%s" /></div>', $item['image']);
+  if (!empty($item['image'])) {
+    $html .= sprintf('<div class="press-image"><img src="%s" /></div>', $item['image']);
+  }
   $html .= sprintf('<div class="press-title">%s</div>', $item['title']);
   $html .= sprintf('<div class="press-body">%s</div>', $item['body']);
 
@@ -133,8 +135,10 @@ function _sig_press_prepare_item_teaser($item, $index) {
   
   $html = '<div class="press-item">';
   $html .= sprintf('<div class="press-title"><h2 class="eqhy"><a href="%s">%s</a></h2></div>', $url, $item['title']);
-  $html .= sprintf('<div class="press-image"><img src="%s" /></div>', $item['image']);
-  $html .= sprintf('<div class="press-body">%s%s</div>', $body, $read_more);
+  if(!empty($item['image'])) {
+    $html .= sprintf('<div class="press-image image-overlay-outer eqhy2"><img src="%s" /><div class="image-overlay"></div></div>', $item['image']);
+  }
+  $html .= sprintf('<div class="press-body eqhy3">%s%s</div>', $body, $read_more);
   $html .= sprintf('<div class="press-date">%s</div>', substr($item['date'],0, -8));
 
   $html .= '</div>';
