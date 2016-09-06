@@ -42,12 +42,13 @@
       <?php print render($page['content']); ?>
 
     </div>
-
-
   </div>
+
+<div class="fbdm"></div>
+
+</div>
 
   <?php print render($page['footer']); ?>
 
-</div>
 
 <?php print render($page['bottom']); ?>

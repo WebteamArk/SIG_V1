@@ -9,7 +9,7 @@ Drupal.behaviors.sigCasesDownload = {
     $('div.field-name-field-case-pdf .file a').once('sig-case-download-processed').each(function() {
       var $link = $(this);
       setTimeout( function() {
-        $('body').append('<iframe width="0" height="0" frameborder="0" src="' + $link.attr('href') +'"></iframe>');
+        //$('body').append('<iframe width="0" height="0" frameborder="0" src="' + $link.attr('href') +'" sandbox></iframe>');
       }, 1500);
     });
   }

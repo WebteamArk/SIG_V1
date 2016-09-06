@@ -17,12 +17,21 @@
 
 
 @import "temp"
-
+html
+  height: 100%
 body
   color: #000
   background: #fff
   font-size: 12px
   line-height: 200%
   overflow-y: scroll
+  position: relative
+  height: 100%
   @include breakpoint($m)
     line-height: 17px
+#page
+  +box-sizing(border-box)
+  min-height: 100%
+  position: relative
+  .fbdm
+    display: block

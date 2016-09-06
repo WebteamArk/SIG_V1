@@ -1,0 +1,3 @@
+I changed the svg image on the “where we operate page”
+Changed the pressroom code to the latest one i received, this is working now!
+Just changed the text document so i could see if i pushed the right files :p
