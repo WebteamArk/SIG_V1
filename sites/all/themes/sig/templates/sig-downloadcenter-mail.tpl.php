@@ -202,14 +202,14 @@ p {
                   Dear Mr/Ms <?php print $surname; ?><br />
 									<br /> Thank you for downloading a brochure from our SIG Air Handling website.
 									<br />
-									<br /> Interested in more?<br /> Please take a look at <a href="#" target="_blank">our other brochures</a>.
+									<br /> Interested in more?<br /> Please take a look at <a href="<?php print $base_url ;?>/downloadcenter" target="_blank">our other brochures</a>.
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<p class="interimg">
-									<a href="#" target="_blank"><img src="<?php print $assets_path; ?>download.jpg" alt="view our cases" /></a>
+									<a href="<?php print $base_url ;?>/cases"  target="_blank"><img src="<?php print $assets_path; ?>download.jpg" alt="view our cases" /></a>
 								</p>
 							</td>
 						</tr>

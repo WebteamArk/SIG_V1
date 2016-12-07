@@ -362,6 +362,17 @@ Drupal.behaviors.sigSvgMap = {
         });
       });
     });
+	 $('#belgium-dialog .tabs-nav a', context).once('sig-svg-map').each(function () {
+      $(this).click(function (e) {
+        e.preventDefault();
+        $('#belgium-dialog .tabs-nav a', context).removeClass('active');
+        $(this).addClass('active');
+        var tabClass = $(this).attr('data-map-tabs');
+        $('#belgium-dialog .map-tab', context).removeClass('map-tab-active');
+        $('#belgium-dialog .map-tab.' + tabClass, context).addClass('map-tab-active');
+        //return false;
+      });
+    });
     
     $('#netherlands-dialog .tabs-nav a', context).once('sig-svg-map').each(function () {
       $(this).click(function (e) {
@@ -406,6 +417,19 @@ Drupal.behaviors.sigFooterToBottom = {
       }
       $('#page', context).find('.fbdm').each( function () {
         $(this).css('height', height + addHeight);
+      });
+    });
+  },
+};
+
+Drupal.behaviors.sigAnimateAnchor = {
+  attach: function(context, settings) {
+    $('a.animate-anchor', context).once('sig-animate-anchor', function () {
+      $(this).click(function(){
+        $('html, body').animate({
+          scrollTop: $('[name="' + $.attr(this, 'href').substr(1) + '"]').offset().top
+        }, 500);
+        return false;
       });
     });
   },

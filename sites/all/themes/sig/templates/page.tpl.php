@@ -33,7 +33,7 @@
     </div>
 
       <a id="main-content"></a>
-      <?php print $messages; ?>
+      <?php // print $messages; ?>
       <?php print render($tabs); ?>
       <?php print render($page['help']); ?>
       <?php if ($action_links): ?>
