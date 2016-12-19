@@ -8,31 +8,33 @@
 
 Drupal.behaviors.sigMainMenu = {
   attach: function(context, settings) {
-    $('#block-system-main-menu', context).once('sig-main-menu', function () {
-      $(this).hover(function () {
-        var $header = $('#header', context);
-        if(!$header.hasClass('npx-expanded')) {
-          if($(window).width() > 1229) {
-            $('#header', context).addClass('npx-expanded');
-            Drupal.behaviors.sigMainMenu.menuOn();
-          }
-        }
-      },
-      function () {
-        if($(window).width() > 1229) {
-          Drupal.behaviors.sigMainMenu.menuOff();
-          $('#header', context).removeClass('npx-expanded');
-        }
-      });
-    });
+//    $('#block-system-main-menu', context).once('sig-main-menu', function () {
+//      $(this).hover(function () {
+//        var $header = $('#header', context);
+//        if(!$header.hasClass('npx-expanded')) {
+//          if($(window).width() > 1229) {
+//            $('#header', context).addClass('npx-expanded');
+//            Drupal.behaviors.sigMainMenu.menuOn();
+//          }
+//        }
+//      },
+//      function () {
+//        if($(window).width() > 1229) {
+//          Drupal.behaviors.sigMainMenu.menuOff();
+//          $('#header', context).removeClass('npx-expanded');
+//        }
+//      });
+//    });
     $('#header #block-system-main-menu .hamburger span', context).once('sig-main-menu', function () {
       $(this).click(function () {
         var $header = $('#header', context);
         if($header.hasClass('npx-expanded')) {
           Drupal.behaviors.sigMainMenu.menuOff();
+          $(this).removeClass('close-icon');
         }
         else {
           Drupal.behaviors.sigMainMenu.menuOn();
+          $(this).addClass('close-icon');
         }
         $header.toggleClass('npx-expanded');
       });
@@ -91,7 +93,7 @@ Drupal.behaviors.sigSlogans = {
         else {
           $text.fadeOut(duration);
         }
-      }, 
+      },
       { offset: '50%', });
     });
   }
@@ -108,7 +110,7 @@ Drupal.behaviors.sigImagesOverlay = {
           right = 0;
         }
         $bg.animate({right: right}, duration);
-      }, 
+      },
       { offset: '50%', triggerOnce: false});
     });
   }
@@ -373,7 +375,7 @@ Drupal.behaviors.sigSvgMap = {
         //return false;
       });
     });
-    
+
     $('#netherlands-dialog .tabs-nav a', context).once('sig-svg-map').each(function () {
       $(this).click(function (e) {
         e.preventDefault();
@@ -481,14 +483,16 @@ $(window).scroll(function () {
 $(window).resize(function () {
   var viewport = getViewport();
   var $header = $('#header');
-  if(viewport.width > 1229 && $header.hasClass('npx-expanded')) {
-    $header.removeClass('npx-expanded');
-    $header.removeAttr('style');
+//  if(viewport.width > 1229 && $header.hasClass('npx-expanded')) {
+  if($header.hasClass('npx-expanded')) {
+    //$header.removeClass('npx-expanded');
+    //$header.removeAttr('style');
+    Drupal.behaviors.sigMainMenu.menuOn();
   }
-  
+
   var $footer = $('#footer');
   var height = $footer.height();
-  
+
   $footer.css('height', height);
   $('#page').css('margin-bottom', -height);
   var viewport = getViewport();
