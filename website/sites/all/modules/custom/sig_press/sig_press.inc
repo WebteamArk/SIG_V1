@@ -88,8 +88,6 @@ function _sig_press_get_lang() {
       return 'DE';
     case 'pl':
       return 'PL';
-    case 'de':
-      return 'DE';
     default:
       return LANGUAGE_NONE;
   }

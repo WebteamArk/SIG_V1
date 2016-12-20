@@ -127,7 +127,16 @@ function _sig_press_prepare_item_teaser($item, $index) {
   $body = truncate_utf8($body, 400, true);
   $body .= ' ...';
   
-  $url = '/' . drupal_get_path_alias(current_path());
+  global $language;
+  $ln = $language->language;
+  
+  if($ln != 'en') {
+    $url = '/' . $ln . '/' . drupal_get_path_alias(current_path());
+  }
+  else {
+    $url = '/' . drupal_get_path_alias(current_path());
+  }
+  
   $url .= '?pressart=' . $index;
   
   $read_more_text = t('Read more');
